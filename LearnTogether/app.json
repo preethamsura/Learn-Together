@@ -1,0 +1,12 @@
+{
+  "name": "LearnTogether",
+  "displayName": "LearnTogether",
+  "expo": {
+    "name": "LearnTogether",
+    "slug": "LearnTogether",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
