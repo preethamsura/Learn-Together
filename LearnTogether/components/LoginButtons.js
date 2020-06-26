@@ -24,13 +24,14 @@ const LoginButtons = () => {
 
 const styles = StyleSheet.create({
       Touch: {
-          padding:15,
+          
           backgroundColor: 'cyan',
           borderBottomEndRadius: 10,
           borderBottomEndRadius: 10,
           borderWidth: 5,
           borderColor: '#00A2FF',
-          borderRadius: 10
+          borderRadius: 10,
+          paddingTop: 30
           
       },
       ButtonView: {
