@@ -1,18 +1,47 @@
 import { StatusBar } from 'expo-status-bar';
 import React, {Component} from 'react'; 
-import {View, Text, StyleSheet} from 'react-native';
-import LoginButtons from '../components/LoginButtons.js';
+import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
+//import LoginButtons from '../components/LoginButtons.js';
 import Header from '../components/Header.js';
+import firebase from 'firebase';
 
 class LoginScreen extends Component {
+    signInWithGoogleAsync = async() => {
+      try {
+        const result = await Google.logInAsync({
+          // androidClientId: YOUR_CLIENT_ID_HERE,
+          behavior: "web",
+          iosClientId: 576039292842-tekvatilmrad7cqo88psk1n74pjt9isr.apps.googleusercontent.com,
+          scopes: ['profile', 'email'],
+        });
+    
+        if (result.type === 'success') {
+          return result.accessToken;
+        } else {
+          return { cancelled: true };
+        }
+      } catch (e) {
+        return { error: true };
+      }
+    }
+
     render() {
         return (
-            <View style={styles.header}>
-            <Header />
-            <View style={styles.container}>
-                <LoginButtons/>
-              <StatusBar style="auto" />
-            </View>
+          <View>
+          <TouchableOpacity style = {styles.Touch}>
+              <View style={styles.ButtonView}>
+              <Text style={styles.ButtonText} >
+                  Login
+              </Text>
+              </View>
+          </TouchableOpacity>
+          <TouchableOpacity style = {styles.Touch}>
+              <View style={styles.ButtonView} onPress={() => this.signInWithGoogleAsync()}> 
+                  <Text style={styles.ButtonText}>
+                      Signup with Google
+                      </Text>
+                  </View>
+              </TouchableOpacity>
           </View>
         ) 
     }
@@ -37,5 +66,11 @@ const styles = StyleSheet.create({
       justifyContent: 'center',
       fontSize: 26
       
+    },
+    ButtonText: {
+      fontSize: 18,
+      alignItems: 'center',
+      justifyContent: 'center', 
+      borderBottomEndRadius: 10,
     }
   });

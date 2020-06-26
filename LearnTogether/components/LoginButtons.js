@@ -14,7 +14,7 @@ const LoginButtons = () => {
         <TouchableOpacity style = {styles.Touch}>
             <View style={styles.ButtonView}>
                 <Text style={styles.ButtonText} >
-                    Signup
+                    Signup with Google
                     </Text>
                 </View>
             </TouchableOpacity>
@@ -22,23 +22,27 @@ const LoginButtons = () => {
     )
   }
 
-  const styles = StyleSheet.create({
+const styles = StyleSheet.create({
       Touch: {
           padding:15,
           backgroundColor: 'cyan',
-          borderBottomWidth: 5,
-          borderColor: '#00A2FF'
+          borderBottomEndRadius: 10,
+          borderBottomEndRadius: 10,
+          borderWidth: 5,
+          borderColor: '#00A2FF',
+          borderRadius: 10
           
       },
       ButtonView: {
           flexDirection: 'row',
           justifyContent: "space-between",
           alignItems: "center",
+
       },
       ButtonText: {
-          fontSize: 18
+          fontSize: 18,
+          alignItems: 'center',
+          justifyContent: 'center', 
+          borderBottomEndRadius: 10,
       }
-
-    
-  });
-  export default LoginButtons;
+});

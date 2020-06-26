@@ -7,7 +7,9 @@ import LoginScreen from './screens/LoginPage.js';
 import LoadingScreen from './screens/LoadingPage.js';
 import HomeScreen from './screens/HomePage.js';
 
-import firebase from 'firebase';
+import * as firebase from 'firebase';
+import {firebaseConfig} from './config'
+firebase.initializeApp(firebaseConfig);
 
 export default class App extends React.Component {
   render() {
@@ -16,8 +18,8 @@ export default class App extends React.Component {
 }
 
 const AppSwitchNavigator = createSwitchNavigator({
-  LoginScreen:LoginScreen,
   LoadingScreen:LoadingScreen,
+  LoginScreen:LoginScreen,
   HomeScreen:HomeScreen
 });
 
