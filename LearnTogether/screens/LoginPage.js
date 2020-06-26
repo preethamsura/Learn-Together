@@ -3,21 +3,25 @@ import React, {Component} from 'react';
 import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 //import LoginButtons from '../components/LoginButtons.js';
 import Header from '../components/Header.js';
+import * as Google from 'expo-google-app-auth';
 
+const IOS_CLIENT_ID = "180684653564-384np6iorf773o9su3msm8c074n6hsbb.apps.googleusercontent.com"
 
 class LoginScreen extends Component {
     signInWithGoogleAsync = async() => {
+      console.log('pressed');
       try {
         const result = await Google.logInAsync({
           // androidClientId: YOUR_CLIENT_ID_HERE,
-          behavior: "web",
-          iosClientId: "576039292842-tekvatilmrad7cqo88psk1n74pjt9isr.apps.googleusercontent.com",
+          iosClientId: IOS_CLIENT_ID,
           scopes: ['profile', 'email'],
         });
-    
+        console.log(result);
         if (result.type === 'success') {
+          console.log('success')
           return result.accessToken;
         } else {
+          console.log('failure')
           return { cancelled: true };
         }
       } catch (e) {

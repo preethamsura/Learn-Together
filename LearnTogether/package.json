@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "expo": "~38.0.1",
+    "expo-cli": "^3.21.12",
     "expo-google-app-auth": "^8.1.2",
     "expo-splash-screen": "~0.3.1",
     "expo-status-bar": "^1.0.0",
@@ -29,6 +30,13 @@
     "babel-jest": "~25.2.6",
     "jest": "~25.2.6",
     "react-test-renderer": "~16.11.0"
+  },
+  "ios": {
+    "config":{
+      "googleSignIn": {
+        "reservedClientId":"com.googleusercontent.apps.180684653564-384np6iorf773o9su3msm8c074n6hsbbs"
+      }
+    }
   },
   "jest": {
     "preset": "react-native"

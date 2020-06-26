@@ -1,10 +1,10 @@
 export const firebaseConfig = {
-    apiKey: "AIzaSyAmQaKZF-WrxcGDf7TvBN34wC2Pe734dpk",
-    authDomain: "learn-together-74328.firebaseapp.com",
-    databaseURL: "https://learn-together-74328.firebaseio.com",
-    projectId: "learn-together-74328",
-    storageBucket: "learn-together-74328.appspot.com",
-    messagingSenderId: "576039292842",
-    appId: "1:576039292842:web:a5a9ddde098b22051ee5d3",
-    measurementId: "G-9X5ZS8EJ8M"
+    apiKey: "AIzaSyCT2brSnsyBT2AUiP7dh_7J7TSzzPr_-9E",
+    authDomain: "learn-together-a3143.firebaseapp.com",
+    databaseURL: "https://learn-together-a3143.firebaseio.com",
+    projectId: "learn-together-a3143",
+    storageBucket: "learn-together-a3143.appspot.com",
+    messagingSenderId: "180684653564",
+    appId: "1:180684653564:web:d3efdce613a67752b42879",
+    measurementId: "G-F21HK0HNHT"
 };
