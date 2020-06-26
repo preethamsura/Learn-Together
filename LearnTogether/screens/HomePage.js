@@ -1,24 +1,17 @@
-import { StatusBar } from 'expo-status-bar';
 import React, {Component} from 'react'; 
 import {View, Text, StyleSheet} from 'react-native';
-import LoginButtons from '../components/LoginButtons.js';
-import Header from '../components/Header.js';
 
-class LoginScreen extends Component {
+class HomeScreen extends Component {
     render() {
         return (
-            <View style={styles.header}>
-            <Header />
             <View style={styles.container}>
-                <LoginButtons/>
-              <StatusBar style="auto" />
+              <Text> Welcome! </Text>
             </View>
-          </View>
         ) 
     }
 }
 
-export default LoginScreen;
+export default HomeScreen;
 
 const styles = StyleSheet.create({
     container: {

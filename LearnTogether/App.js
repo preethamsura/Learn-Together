@@ -1,37 +1,44 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, View, Button, Alert, TextInput} from 'react-native';
-import Header from './components/Header.js';
+import {createAppContainer, createSwitchNavigator} from 'react-navigation';
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Header/>
-      <Button 
-          style={{justifyContent: 'center', alignItems:'center'}}
-          title = "Login"
-          onPress={() => Alert.alert("Hello")}
-      />
-      <Button
-            title="Sign up"
-            onPress={() => Alert.alert("Hello")}
-          />
-      <StatusBar style="auto" />
-    </View>
-  );
+import LoginScreen from './screens/LoginPage.js';
+import LoadingScreen from './screens/LoadingPage.js';
+import HomeScreen from './screens/HomePage.js';
+
+import firebase from 'firebase';
+
+export default class App extends React.Component {
+  render() {
+    return <AppNavigator />;
+  };
 }
+
+const AppSwitchNavigator = createSwitchNavigator({
+  LoginScreen:LoginScreen,
+  LoadingScreen:LoadingScreen,
+  HomeScreen:HomeScreen
+});
+
+const AppNavigator = createAppContainer(AppSwitchNavigator)
 
 const styles = StyleSheet.create({
   container: {
-    paddingTop: 60,
-    flex: 1,
+    flex: 2,
     backgroundColor: '#5f9ea0',
     alignItems: 'center',
    
   },
+  header: {
+    flex:1,
+    paddingTop: 60,
+    backgroundColor: '#5f9ea0',
+
+  },
   text: {
     justifyContent: 'center',
-    fontSize: 23
+    fontSize: 26
     
   }
 });
