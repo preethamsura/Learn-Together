@@ -1,12 +1,20 @@
 import React, {Component} from 'react'; 
-import {View, Text, StyleSheet, Button, ActivityIndicator} from 'react-native';
+import {View, StyleSheet, ActivityIndicator} from 'react-native';
 import firebase from 'firebase'
 
+/** Class for the loading screen right when the user opens the app. Should either
+ * navigate the user to the LoginScreen if the user has not logged into an account
+ * or it will navigate the user to the HomeScreen of the app where they can begin
+ * to use the app.
+ */
 class LoadingScreen extends Component {
+    // Loads data from firebase once this component is added to the working tree
     componentDidMount() {
         this.checkIfLoggedIn();
     }
 
+    // Checks to see if the current user is already logged in or not,
+    // if they are logged in, go to the homescreen, else go to the loginscreen
     checkIfLoggedIn = () => {
       firebase.auth().onAuthStateChanged(
         function(user) {
@@ -19,6 +27,9 @@ class LoadingScreen extends Component {
       );
     };
     
+    // Default image for the loading page. Currently the loading screen is
+    // just a white background with the a circle indicating loading at the center
+    // of the screen.
     render() {
       return (
         <View style={styles.activityContainer}>
@@ -40,7 +51,6 @@ const styles = StyleSheet.create({
       flex: 2,
       backgroundColor: '#5f9ea0',
       alignItems: 'center',
-     
     },
     header: {
       flex:1,
@@ -48,9 +58,4 @@ const styles = StyleSheet.create({
       backgroundColor: '#5f9ea0',
   
     },
-    text: {
-      justifyContent: 'center',
-      fontSize: 26
-      
-    }
   });

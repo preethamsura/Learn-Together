@@ -1,6 +1,10 @@
 import React, {Component} from 'react'; 
 import {View, Text, StyleSheet} from 'react-native';
 
+/** Default home screen for the app. What the user will see when they open
+ * the app and login. Includes allowing the user to use the app as well as 
+ * leads to a settings page where they can change their preferences. 
+ */
 class HomeScreen extends Component {
     render() {
         return (

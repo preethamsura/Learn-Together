@@ -1,6 +1,4 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View, Button, Alert, TextInput} from 'react-native';
 import {createAppContainer, createSwitchNavigator} from 'react-navigation';
 
 import LoginScreen from './screens/LoginPage.js';
@@ -10,38 +8,26 @@ import HomeScreen from './screens/HomePage.js';
 import firebase from 'firebase';
 
 import {firebaseConfig} from './config.js'
+
+// Initializes the firebase so that the user can sign in.
 firebase.initializeApp(firebaseConfig);
 
+/** Initial file which is ran which starts the firebase and takes the user to the 
+ * loading screen. 
+ */
 export default class App extends React.Component {
   render() {
+    // Initializes the app with the navigator. The default page which is ran
+    // first is the loading screen which runs the rest. 
     return <AppNavigator />;
   };
 }
 
+// Creates a navigator which can be used to switch between the screens of the app.
 const AppSwitchNavigator = createSwitchNavigator({
   LoadingScreen:LoadingScreen,
   LoginScreen:LoginScreen,
   HomeScreen:HomeScreen
 });
 
-const AppNavigator = createAppContainer(AppSwitchNavigator)
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 2,
-    backgroundColor: '#5f9ea0',
-    alignItems: 'center',
-   
-  },
-  header: {
-    flex:1,
-    paddingTop: 60,
-    backgroundColor: '#5f9ea0',
-
-  },
-  text: {
-    justifyContent: 'center',
-    fontSize: 26
-    
-  }
-});
+const AppNavigator = createAppContainer(AppSwitchNavigator);
