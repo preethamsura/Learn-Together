@@ -7,7 +7,7 @@ import LoginScreen from './screens/LoginPage.js';
 import LoadingScreen from './screens/LoadingPage.js';
 import HomeScreen from './screens/HomePage.js';
 
-import * as firebase from 'firebase';
+import firebase from 'firebase';
 
 import {firebaseConfig} from './config.js'
 firebase.initializeApp(firebaseConfig);
