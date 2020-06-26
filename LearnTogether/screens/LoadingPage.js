@@ -3,7 +3,7 @@ import {View, Text, StyleSheet, Button, ActivityIndicator} from 'react-native';
 import firebase from 'firebase'
 
 class LoadingScreen extends Component {
-    componentdDidMount() {
+    componentDidMount() {
         this.checkIfLoggedIn();
     }
 
@@ -11,7 +11,7 @@ class LoadingScreen extends Component {
       firebase.auth().onAuthStateChanged(
         function(user) {
           if(user) {
-              this.prop.navigation.navigate('HomeScreen');
+              this.props.navigation.navigate('HomeScreen');
           } else {
               this.props.navigation.navigate('LoginScreen');
           }
