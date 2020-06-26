@@ -31,7 +31,9 @@ const styles = StyleSheet.create({
           borderWidth: 5,
           borderColor: '#00A2FF',
           borderRadius: 10,
-          paddingTop: 30
+          paddingTop: 30,
+          paddingBottom: 40
+          
           
       },
       ButtonView: {

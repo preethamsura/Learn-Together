@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
       padding: 12,
       marginTop: 10,
       marginBottom: 20,
-      marginLeft: 30,
+      marginLeft: 60,
       width: 300,
       alignItems: 'center'
       
@@ -84,7 +84,7 @@ const styles = StyleSheet.create({
       borderBottomEndRadius: 10,
     }, 
     view: {
-      marginTop: 550,
+      marginTop: 330,
       
     }
     
