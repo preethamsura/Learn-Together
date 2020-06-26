@@ -35,8 +35,8 @@ class LoginScreen extends Component {
               </Text>
               </View>
           </TouchableOpacity>
-          <TouchableOpacity style = {styles.Touch}>
-              <View style={styles.ButtonView} onPress={() => this.signInWithGoogleAsync()}> 
+          <TouchableOpacity style = {styles.Touch} onPress={() => this.signInWithGoogleAsync()}>
+              <View style={styles.ButtonView}> 
                   <Text style={styles.ButtonText}>
                       Signup with Google
                       </Text>

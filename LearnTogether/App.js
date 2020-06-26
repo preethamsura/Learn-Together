@@ -8,7 +8,8 @@ import LoadingScreen from './screens/LoadingPage.js';
 import HomeScreen from './screens/HomePage.js';
 
 import * as firebase from 'firebase';
-import {firebaseConfig} from './config'
+
+import {firebaseConfig} from './config.js'
 firebase.initializeApp(firebaseConfig);
 
 export default class App extends React.Component {

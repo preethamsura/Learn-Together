@@ -6,21 +6,22 @@ class LoadingScreen extends Component {
     componentdDidMount() {
         this.checkIfLoggedIn();
     }
+
     checkIfLoggedIn = () => {
-        firebase.auth().onAuthStateChanged(function(user) 
-          {
-            if(user) {
-                this.prop.navigation.navigate('HomeScreen');
-            } else {
-                this.props.navigation('LoginScreen');
-            }
+      firebase.auth().onAuthStateChanged(
+        function(user) {
+          if(user) {
+              this.prop.navigation.navigate('HomeScreen');
+          } else {
+              this.props.navigation.navigate('LoginScreen');
+          }
         }.bind(this)
       );
     };
     
     render() {
       return (
-        <View style={styles.container}>
+        <View style={styles.activityContainer}>
           <ActivityIndicator size="large"/>
         </View>
       );
@@ -30,6 +31,11 @@ class LoadingScreen extends Component {
 export default LoadingScreen;
 
 const styles = StyleSheet.create({
+    activityContainer: {
+      flex: 1,
+      alignItems: 'center',
+      justifyContent: 'center'
+    },
     container: {
       flex: 2,
       backgroundColor: '#5f9ea0',
