@@ -20,7 +20,7 @@ export default HomeScreen;
 const styles = StyleSheet.create({
     container: {
       flex: 2,
-      backgroundColor: '#5f9ea0',
+      backgroundColor: 'white',
       alignItems: 'center',
      
     },
@@ -33,6 +33,5 @@ const styles = StyleSheet.create({
     text: {
       justifyContent: 'center',
       fontSize: 26
-      
     }
   });

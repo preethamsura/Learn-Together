@@ -50,6 +50,14 @@ class LoginScreen extends Component {
                       </Text>
                   </View>
               </TouchableOpacity>
+
+            <TouchableOpacity style = {styles.Touch} onPress={() => this.props.navigation.navigate('HomeScreen')}>
+              <View style={styles.ButtonView}> 
+                  <Text style={styles.ButtonText}>
+                      Go To Home Screen
+                      </Text>
+                  </View>
+              </TouchableOpacity>
           </View>
         ) 
     }
