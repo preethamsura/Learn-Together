@@ -1,5 +1,6 @@
 import React, {Component} from 'react'; 
 import {View, Text, StyleSheet, Button, ActivityIndicator} from 'react-native';
+import firebase from 'firebase'
 
 class LoadingScreen extends Component {
     componentdDidMount() {
@@ -13,8 +14,9 @@ class LoadingScreen extends Component {
             } else {
                 this.props.navigation('LoginScreen');
             }
-        }).bind(this);
-    }
+        }.bind(this)
+      );
+    };
     
     render() {
       return (

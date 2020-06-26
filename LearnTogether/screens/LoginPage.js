@@ -3,7 +3,7 @@ import React, {Component} from 'react';
 import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 //import LoginButtons from '../components/LoginButtons.js';
 import Header from '../components/Header.js';
-import firebase from 'firebase';
+
 
 class LoginScreen extends Component {
     signInWithGoogleAsync = async() => {
