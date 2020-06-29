@@ -9,7 +9,9 @@ class HomeScreen extends Component {
     render() {
         return (
             <View style={styles.container}>
-              <Text> Welcome! </Text>
+              <Text style={styles.text}> 
+              Welcome to the home screen!
+              </Text>
             </View>
         ) 
     }
@@ -19,9 +21,9 @@ export default HomeScreen;
 
 const styles = StyleSheet.create({
     container: {
-      flex: 2,
-      backgroundColor: 'white',
+      flex:2,
       alignItems: 'center',
+      justifyContent: 'center'
      
     },
     header: {
@@ -31,7 +33,7 @@ const styles = StyleSheet.create({
   
     },
     text: {
-      justifyContent: 'center',
-      fontSize: 26
+      fontSize: 25,
+      
     }
   });
