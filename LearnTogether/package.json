@@ -8,6 +8,7 @@
     "test": "jest"
   },
   "dependencies": {
+    "cors": "^2.8.5",
     "expo": "~38.0.1",
     "expo-cli": "^3.21.12",
     "expo-google-app-auth": "^8.1.2",
