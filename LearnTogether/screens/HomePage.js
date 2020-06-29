@@ -9,7 +9,9 @@ class HomeScreen extends Component {
     render() {
         return (
             <View style={styles.container}>
-              <Text> Welcome! </Text>
+              <Text style={styles.text}> 
+              Welcome to the home screen! 
+              </Text>
             </View>
         ) 
     }
@@ -22,6 +24,7 @@ const styles = StyleSheet.create({
       flex: 2,
       backgroundColor: 'white',
       alignItems: 'center',
+      justifyContent:'center'
      
     },
     header: {
