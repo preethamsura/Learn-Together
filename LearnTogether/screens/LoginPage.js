@@ -21,7 +21,6 @@ class LoginScreen extends Component {
           iosClientId: IOS_CLIENT_ID,
           scopes: ['profile', 'email'],
         });
-        console.log(result);
 
         // If the sign in was successful, return an access token to the user,
         // else return that the user was unable to sign in.
