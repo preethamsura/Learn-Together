@@ -10,7 +10,7 @@ class Buttons extends Component {
      * @return = Button with all the necessary params set. 
     */
     getTouchButton = (text = "", method, argument = undefined) => {
-        return (<TouchableOpacity style = {styles.Touch} onPress={() => method()}>
+        return (<TouchableOpacity style = {styles.Touch} onPress={() => method(argument)}>
         <View style={styles.ButtonView}> 
             <Text style={styles.ButtonText}>
                 {text}
