@@ -1,17 +1,17 @@
 import React, {Component} from 'react'; 
 import {View, Text, StyleSheet} from 'react-native';
 import Button from '../components/Button.js';
+import TextTypes from '../components/Text.js'
 
 /** FIX THIS COMMENT EVENTUALLY */
 class ProfileScreen extends Component {
     render() {
         let backToLogin = Button.getTouchButton("Go Back", this.props.navigation.navigate, 'LoginScreen');
+        let welcomeText = TextTypes.getDefaultText("Welcome to the profile screen!")
         return (
             <View style={styles.container}>
                 {backToLogin}
-              <Text style={styles.text}> 
-              Welcome to the profile screen! 
-              </Text>
+                {welcomeText}
             </View>
         ) 
     }
