@@ -7,7 +7,7 @@ var User = new Schema({
     username: {type:String,required:true},
     password: {type:String,required:true},
     name: {type:String,required:true},
-    joined: {type: Date, required:true},
+    date: {type: Date, required:true},
     /*skills: {
         completed:{
             type: [Skill], 

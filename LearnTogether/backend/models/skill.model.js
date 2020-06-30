@@ -11,6 +11,4 @@ var Skill = Schema({
     timestamps: true
 })
 
-module.exports = {
-    Skill: mongoose.model('Skill', Skill)
-}
+module.exports = {Skill: mongoose.model('Skill', Skill)}
