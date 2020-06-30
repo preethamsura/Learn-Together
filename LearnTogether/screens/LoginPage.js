@@ -1,6 +1,7 @@
 import React, {Component} from 'react'; 
-import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
+import {View, StyleSheet} from 'react-native';
 import * as Google from 'expo-google-app-auth';
+import Button from '../components/Button.js';
 
 // Link to the firebase authentication client
 const IOS_CLIENT_ID = "180684653564-384np6iorf773o9su3msm8c074n6hsbb.apps.googleusercontent.com"
@@ -40,26 +41,20 @@ class LoginScreen extends Component {
     // Creates the loading screen which only has one button which allows the user to login
     // to the app using google.
     render() {
-        return (
-          // Creates a button with the text "Sign in with Google" which prompts a google sign in.
-          <View style = {styles.view}>
-          <TouchableOpacity style = {styles.Touch} onPress={() => this.signInWithGoogleAsync()}>
-              <View style={styles.ButtonView}> 
-                  <Text style={styles.ButtonText}>
-                      Sign in with Google
-                      </Text>
-                  </View>
-              </TouchableOpacity>
+      let touch = Button.getTouchButton
 
-            <TouchableOpacity style = {styles.Touch} onPress={() => this.props.navigation.navigate('HomeScreen')}>
-              <View style={styles.ButtonView}> 
-                  <Text style={styles.ButtonText}>
-                      Go To Home Screen
-                      </Text>
-                  </View>
-              </TouchableOpacity>
-          </View>
-        ) 
+      // Creates the 3 current buttons which are being used on the home screen.
+      let signInButton  = touch("Sign in with Google", this.signInWithGoogleAsync);
+      let homeScreenButton = touch("Go To Home Screen", this.props.navigation.navigate, 'HomeScreen');
+      let profileScreenButton = touch("Go To Profile Screen", this.props.navigation.navigate, 'ProfileScreen');
+      return (
+        // Creates the view with all the buttons that are needed
+        <View style = {styles.view}>
+          {signInButton}
+          {homeScreenButton}
+          {profileScreenButton}
+        </View>
+      ) 
     }
 }
 
@@ -71,30 +66,10 @@ const styles = StyleSheet.create({
       backgroundColor: 'black',
       alignItems: 'center',
     },
-    Touch: {
-      backgroundColor: 'lightgrey',
-      borderRadius: 20,
-      padding: 12,
-      width: 300,
-      alignItems: 'center'
-    },
-    ButtonView: {
-      flexDirection: 'row',
-      justifyContent: "space-between",
-      alignItems: "center",
-
-    },
-    ButtonText: {
-      fontSize: 25,
-      alignItems: 'center',
-      justifyContent: 'center', 
-      borderBottomEndRadius: 10,
-    }, 
     view: {
       marginTop: 330,
       alignContent: 'center',
       alignItems: 'center',
       
     }
-    
   });
