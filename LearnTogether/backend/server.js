@@ -22,8 +22,10 @@ connection.once('open', () => {
 })
 
 const usersRouter = require('./routes/user');
+const skillsRouter = require('./routes/skill')
 
 app.use('/user', usersRouter);
+app.use('/skill', skillsRouter)
 
 app.listen(port, () => {
     console.log(`Server is running on port: ${port}`);

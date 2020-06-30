@@ -11,14 +11,14 @@ router.route('/add').post((req, res) => {
   const name = req.body.name;
   const num_completed = req.body.num_completed;
   const description = req.body.description;
-  const image = Buffer(req.body.image);
+  //const image = Buffer(req.body.image);
   const date = Date.parse(req.body.date);
 
-  const newskill = new skill({
+  const newSkill = new Skill({
     name,
     num_completed,
     description,
-    image,
+    //image,
     date,
   });
 
