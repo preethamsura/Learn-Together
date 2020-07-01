@@ -1,11 +1,8 @@
-import React, {Component} from 'react'; 
+import React, {Component} from 'react';
 import {View, StyleSheet} from 'react-native';
 import * as Google from 'expo-google-app-auth';
-<<<<<<< HEAD
-import Button from '../components/Button.js';
-=======
 import firebase from 'firebase';
->>>>>>> backend
+import Button from '../components/Button.js';
 
 // Link to the firebase authentication client
 const IOS_CLIENT_ID = "180684653564-384np6iorf773o9su3msm8c074n6hsbb.apps.googleusercontent.com"
@@ -56,7 +53,7 @@ class LoginScreen extends Component {
     signInWithGoogleAsync = async() => {
       // Just tells us if they clicked on the sign in button
       console.log('pressed');
-      
+
       // Catches any errors just in case something goes wrong with signing in
       try {
         // Opens up the google sign in so the user can sign in
@@ -118,7 +115,7 @@ class LoginScreen extends Component {
           {homeScreenButton}
           {profileScreenButton}
         </View>
-      ) 
+      )
     }
 }
 
@@ -134,6 +131,6 @@ const styles = StyleSheet.create({
       marginTop: 330,
       alignContent: 'center',
       alignItems: 'center',
-      
+
     }
   });
