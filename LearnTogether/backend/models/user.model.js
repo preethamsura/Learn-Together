@@ -6,9 +6,9 @@ var User = new Schema({
     password: {type:String,required:true},
     name: {type:String,required:true},
     date: {type: Date, required:true},
-    skills_completed: [Number],
-    skills_interested: [Number],
-    friends: [Number],
+    skills_completed: [],
+    skills_interested: [],
+    friends: [],
     pfp: { data: Buffer, contentType: String },
 },{
     timestamps: true
