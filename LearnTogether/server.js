@@ -7,7 +7,7 @@ const uri = process.env.ATLAS_URI;
 
 // Initialize http server
 const app = express();
-const port = process.env.Port || 80;
+var port = process.env.PORT || 5000;
 app.use(cors())
 app.use(express.json());
 // Handle / route
@@ -21,8 +21,8 @@ connection.once('open', () => {
     console.log("MongoDB database connection established successfully");
 })
 
-const usersRouter = require('./routes/user');
-const skillsRouter = require('./routes/skill')
+const usersRouter = require('./backend/routes/user');
+const skillsRouter = require('./backend/routes/skill')
 
 app.use('/user', usersRouter);
 app.use('/skill', skillsRouter)
