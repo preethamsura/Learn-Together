@@ -1,13 +1,56 @@
 import React, {Component} from 'react'; 
 import {View, StyleSheet} from 'react-native';
 import * as Google from 'expo-google-app-auth';
+<<<<<<< HEAD
 import Button from '../components/Button.js';
+=======
+import firebase from 'firebase';
+>>>>>>> backend
 
 // Link to the firebase authentication client
 const IOS_CLIENT_ID = "180684653564-384np6iorf773o9su3msm8c074n6hsbb.apps.googleusercontent.com"
 
 /** Class which lets the user login to their account (currently only using google accounts). */
 class LoginScreen extends Component {
+    isUserEqual = (googleUser, firebaseUser) => {
+      if (firebaseUser) {
+        var providerData = firebaseUser.providerData;
+        for (var i = 0; i < providerData.length; i++) {
+          if (providerData[i].providerId === firebase.auth.GoogleAuthProvider.PROVIDER_ID &&
+              providerData[i].uid === googleUser.getBasicProfile().getId()) {
+            // We don't need to reauth the Firebase connection.
+            return true;
+          }
+        }
+      }
+      return false;
+    }
+    onSignIn = googleUser => {
+      console.log('Google Auth Response', googleUser);
+      // We need to register an Observer on Firebase Auth to make sure auth is initialized.
+      var unsubscribe = firebase.auth().onAuthStateChanged(function(firebaseUser) {
+        unsubscribe();
+        // Check if we are already signed-in Firebase with the correct user.
+        if (!this.isUserEqual(googleUser, firebaseUser)) {
+          // Build Firebase credential with the Google ID token.
+          var credential = firebase.auth.GoogleAuthProvider.credential(
+              googleUser.idToken,
+              googleUser.accessToken);
+          // Sign in with credential from the Google user.
+          firebase.auth().signInWithCredential(credential).catch(function(error) {
+            // Handle Errors here.
+            var errorCode = error.code;
+            var errorMessage = error.message;
+            // The email of the user's account used.
+            var email = error.email;
+            // The firebase.auth.AuthCredential type that was used.
+            var credential = error.credential;
+          });
+        } else {
+          console.log('User already signed-in Firebase.');
+        }
+      }.bind(this));
+    }
 
   // Prompts the user to sign in with their gmail account
     signInWithGoogleAsync = async() => {
@@ -22,12 +65,13 @@ class LoginScreen extends Component {
           iosClientId: IOS_CLIENT_ID,
           scopes: ['profile', 'email'],
         });
-        console.log(result);
 
         // If the sign in was successful, return an access token to the user,
         // else return that the user was unable to sign in.
         if (result.type === 'success') {
-          console.log('success')
+          console.log('success');
+          this.sendUser(result)
+          this.onSignIn(result);
           return result.accessToken;
         } else {
           console.log('failure')
@@ -36,6 +80,26 @@ class LoginScreen extends Component {
       } catch (e) {
         return { error: true };
       }
+    }
+
+    sendUser = googleUser => {
+      fetch('https://navup-learn-together.herokuapp.com/user/add', {
+        method: 'POST',
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          name: googleUser.name,
+          email: googleUser.email,
+          date: new Date(),
+          skills_completed: [],
+          skills_interested: [],
+          friends: [],
+          pfp: googleUser.photoUrl
+        })
+      }).then((response) => response.json()).then((responseJson) => {
+        console.log(responseJson);
+      })
     }
 
     // Creates the loading screen which only has one button which allows the user to login

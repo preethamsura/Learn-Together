@@ -13,8 +13,14 @@ class HomeScreen extends Component {
       let welcomeText = TextTypes.getDefaultText("Welcome to the home screen!")
         return (
             <View style={styles.container}>
+<<<<<<< HEAD
               {backToLogin}
               {welcomeText}
+=======
+              <Text style={styles.text}> 
+              Welcome to the home screen!
+              </Text>
+>>>>>>> backend
             </View>
         ) 
     }
@@ -24,10 +30,13 @@ export default HomeScreen;
 
 const styles = StyleSheet.create({
     container: {
-      flex: 2,
-      backgroundColor: 'white',
+      flex:2,
       alignItems: 'center',
+<<<<<<< HEAD
       justifyContent:'center'
+=======
+      justifyContent: 'center'
+>>>>>>> backend
      
     },
     header: {
@@ -37,7 +46,7 @@ const styles = StyleSheet.create({
   
     },
     text: {
-      justifyContent: 'center',
-      fontSize: 26
+      fontSize: 25,
+      
     }
   });
