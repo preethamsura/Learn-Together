@@ -37,8 +37,9 @@ const defaultStyles = StyleSheet.create({
       borderRadius: 20,
       padding: 12,
       width: 300,
-      alignItems: 'center'
+      alignItems: 'center',
     },
+
     ButtonView: {
       flexDirection: 'row',
       justifyContent: "space-between",
