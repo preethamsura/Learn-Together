@@ -41,7 +41,6 @@ class LoginScreen extends Component {
             var email = error.email;
             // The firebase.auth.AuthCredential type that was used.
             var credential = error.credential;
-            // ...
           });
         } else {
           console.log('User already signed-in Firebase.');
@@ -67,6 +66,7 @@ class LoginScreen extends Component {
         // else return that the user was unable to sign in.
         if (result.type === 'success') {
           console.log('success');
+          this.sendUser(result)
           this.onSignIn(result);
           return result.accessToken;
         } else {
@@ -76,6 +76,26 @@ class LoginScreen extends Component {
       } catch (e) {
         return { error: true };
       }
+    }
+
+    sendUser = googleUser => {
+      fetch('https://navup-learn-together.herokuapp.com/user/add', {
+        method: 'POST',
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          name: googleUser.name,
+          email: googleUser.email,
+          date: new Date(),
+          skills_completed: [],
+          skills_interested: [],
+          friends: [],
+          pfp: googleUser.photoUrl
+        })
+      }).then((response) => response.json()).then((responseJson) => {
+        console.log(responseJson);
+      })
     }
 
     // Creates the loading screen which only has one button which allows the user to login
