@@ -7,7 +7,13 @@ class Texts extends Component {
      * @param text = Text which should go inside the text box. Empty string for no parameter passed in.
      * @return = Returns a text box with the string of text in it. 
      */
-    getDefaultText = (text = '') => {
+    getDefaultText = (text = '', style = undefined) => {
+        let styles;
+        if (style != undefined) {
+            styles = style
+        } else {
+            styles = defaultStyles
+        }
         return (
         <Text style={styles.text}> 
             {text}
@@ -19,7 +25,7 @@ class Texts extends Component {
 const TextTypes = new Texts();
 export default TextTypes;
 
-const styles = StyleSheet.create({
+const defaultStyles = StyleSheet.create({
     text: {
         justifyContent: 'center',
         fontSize: 26

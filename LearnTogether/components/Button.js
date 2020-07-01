@@ -9,7 +9,13 @@ class Buttons extends Component {
      * @param argument = Argument/arguments for the method if they are required.
      * @return = Button with all the necessary params set. 
     */
-    getTouchButton = (text = "", method, argument = undefined) => {
+    getTouchButton = (text = "", method, argument = undefined, style = undefined) => {
+      let styles;
+      if (style != undefined) {
+        styles = style
+      } else {
+        styles = defaultStyles
+      }
         return (
           <TouchableOpacity style = {styles.Touch} onPress={() => method(argument)}>
           <View style={styles.ButtonView}> 
@@ -25,7 +31,7 @@ class Buttons extends Component {
 const Button = new Buttons();
 export default Button;
 
-const styles = StyleSheet.create({
+const defaultStyles = StyleSheet.create({
     Touch: {
       backgroundColor: 'lightgrey',
       borderRadius: 20,
