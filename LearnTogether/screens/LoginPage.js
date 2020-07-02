@@ -67,7 +67,7 @@ class LoginScreen extends Component {
         // else return that the user was unable to sign in.
         if (result.type === 'success') {
           console.log('success');
-          this.sendUser(result)
+          this.sendUser(result.user)
           this.onSignIn(result);
           return result.accessToken;
         } else {
@@ -80,7 +80,7 @@ class LoginScreen extends Component {
     }
 
     sendUser = googleUser => {
-      fetch('http://99a150418ff1.ngrok.io/user/add', {
+      fetch('https://navup-learn-together.herokuapp.com//user/add', {
         method: 'POST',
         headers: {
           "Content-Type": "application/json"
