@@ -1,5 +1,5 @@
 import React, {Component} from 'react'; 
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text, StyleSheet, Image} from 'react-native';
 import Button from '../components/Button.js';
 import TextTypes from '../components/Text.js';
 
@@ -8,14 +8,21 @@ class ProfileScreen extends Component {
     render() {
         let backToLogin = Button.getTouchButton("Go Back", this.props.navigation.navigate, 'LoginScreen', backButtonStyle);
         let goToHome = Button.getTouchButton("Home", this.props.navigation.navigate, 'HomeScreen', backButtonStyle);
+        let profile = Button.getTouchButton("Profile", this.props.navigation.navigate, 'ProfileScreen', backButtonStyle);
         let username = TextTypes.getDefaultText("Insert Username")
         let descriptionText = TextTypes.getDefaultText("Profile Description")
         return (
             <View style={styles.container}>
+                <View style={styles.filler}>
+                </View>
                 <View style = {styles.contents}>
                     <View style = {styles.username}>
                         {username}
                     </View>
+                    <Image
+                        style={styles.stretch}
+                        source={{uri: 'https://reactnative.dev/img/tiny_logo.png'}}
+                    />
                     <View style = {styles.descriptionText}>
                         {descriptionText}
                     </View>
@@ -23,6 +30,9 @@ class ProfileScreen extends Component {
                 <View style={styles.bottomBar}>
                     {backToLogin}
                     {goToHome}
+                    {profile}
+                </View>
+                <View style={styles.filler}>
                 </View>
             </View>
         )
@@ -33,11 +43,13 @@ export default ProfileScreen;
 
 const backButtonStyle = StyleSheet.create({
     Touch: {
-        flex: 1,
-        backgroundColor: 'white',
+        backgroundColor: 'lightblue',
         borderRadius: 20,
-        padding: 12,
+        borderWidth: 2,
+        borderColor: "#126FAE",
+        
         width: 100,
+        
         alignItems: 'center',
         justifyContent: 'center',
       },
@@ -63,7 +75,6 @@ const styles = StyleSheet.create({
     username: {
         alignItems: 'center',
         justifyContent: 'center', 
-        top: 20
     },
 
     descriptionText: { 
@@ -74,13 +85,26 @@ const styles = StyleSheet.create({
     },
 
     bottomBar: {
-        flex: 1,
+        flex: 2,
         flexDirection: 'row',
-        backgroundColor: 'lightgrey'
+        backgroundColor: 'lightgrey',
+        justifyContent: "space-between",
     },
     
     contents: {
-        flex: 11,
+        flex: 23,
         backgroundColor: 'lightgrey',
-    }
+        alignItems: 'center'
+    },
+
+    filler: {
+        flex: .5,
+        backgroundColor: 'lightgrey'
+    },
+
+    stretch: {
+        width: 100,
+        height: 100,
+        resizeMode: 'cover',
+      }
   });
