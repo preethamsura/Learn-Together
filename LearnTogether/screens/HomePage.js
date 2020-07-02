@@ -1,20 +1,25 @@
-import React, {Component} from 'react';
-import {View, Text, StyleSheet} from 'react-native';
-import Button from '../components/Button.js';
+import React, {Component} from 'react'; 
+import {View, StyleSheet} from 'react-native';
+import TextTypes from '../components/Text.js';
+import Navigation from '../components/NavigationBar.js'
 
-/** Default home screen for the app. What the user will see when they open
- * the app and login. Includes allowing the user to use the app as well as
- * leads to a settings page where they can change their preferences.
- */
+/** FIX THIS COMMENT EVENTUALLY */
 class HomeScreen extends Component {
     render() {
-      let backToLogin = Button.getTouchButton("Go Back", this.props.navigation.navigate, 'LoginScreen', backButtonStyle);
+
+        let navigationBar = Navigation.getNavigationBar(this.props.navigation.navigate)
+        let descriptionText = TextTypes.getDefaultText("Home Screen")
+
         return (
             <View style={styles.container}>
-              {backToLogin}
-              <Text style={styles.text}>
-              Welcome to the home screen!
-              </Text>
+                <View style={styles.topFiller}>
+                </View>
+                <View style = {styles.contents}>
+                  {descriptionText}
+                </View>
+                {navigationBar}
+                <View style={styles.bottomFiller}>
+                </View>
             </View>
         )
     }
@@ -24,41 +29,29 @@ export default HomeScreen;
 
 const styles = StyleSheet.create({
     container: {
-      flex:2,
-      alignItems: 'center',
-      justifyContent: 'center'
-
+      flex: 1,
     },
-    header: {
-      flex:1,
-      paddingTop: 60,
-      backgroundColor: '#5f9ea0',
 
-    },
-    text: {
-      fontSize: 25,
-    }
-  });
-
-  const backButtonStyle = StyleSheet.create({
-    Touch: {
-        backgroundColor: 'lightgrey',
-        borderRadius: 20,
-        padding: 12,
-        width: 100,
+    descriptionText: { 
+        flex: 1, 
+        fontSize: 26, 
         alignItems: 'center',
         justifyContent: 'center',
-      },
+    },
+    
+    contents: {
+        flex: 23,
+        backgroundColor: 'lightgrey',
+        alignItems: 'center'
+    },
 
-      ButtonView: {
-        flexDirection: 'row',
-        justifyContent: "space-between",
-        alignItems: "center",
-      },
+    bottomFiller: {
+        flex: .5,
+        backgroundColor: 'lightgrey'
+    },
 
-      ButtonText: {
-        fontSize: 20,
-        alignItems: 'center',
-        justifyContent: 'center', 
-      }, 
-});
+    topFiller: {
+        flex: 1,
+        backgroundColor: 'lightgrey'
+    },
+  });

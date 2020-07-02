@@ -108,12 +108,14 @@ class LoginScreen extends Component {
       let signInButton  = touch("Sign in with Google", this.signInWithGoogleAsync);
       let homeScreenButton = touch("Go To Home Screen", this.props.navigation.navigate, 'HomeScreen');
       let profileScreenButton = touch("Go To Profile Screen", this.props.navigation.navigate, 'ProfileScreen');
+      let skillScreenButton = touch("Go To Skill Screen", this.props.navigation.navigate, 'SkillScreen');
       return (
         // Creates the view with all the buttons that are needed
-        <View style = {styles.view}>
+        <View style = {styles.container}>
           {signInButton}
           {homeScreenButton}
           {profileScreenButton}
+          {skillScreenButton}
         </View>
       )
     }
@@ -123,14 +125,14 @@ export default LoginScreen;
 
 const styles = StyleSheet.create({
     container: {
-      flex: 2,
-      backgroundColor: 'black',
+      flex: 1,
+      backgroundColor: 'white',
       alignItems: 'center',
+      justifyContent: 'center',
     },
+
     view: {
-      marginTop: 330,
       alignContent: 'center',
       alignItems: 'center',
-
     }
   });

@@ -46,6 +46,7 @@ const defaultStyles = StyleSheet.create({
       alignItems: "center",
 
     },
+    
     ButtonText: {
       fontSize: 25,
       alignItems: 'center',

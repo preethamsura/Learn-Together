@@ -4,28 +4,18 @@ import TextTypes from '../components/Text.js';
 import Navigation from '../components/NavigationBar.js'
 
 /** FIX THIS COMMENT EVENTUALLY */
-class ProfileScreen extends Component {
+class SkillScreen extends Component {
     render() {
 
         let navigationBar = Navigation.getNavigationBar(this.props.navigation.navigate)
-        let username = TextTypes.getDefaultText("Insert Username")
-        let descriptionText = TextTypes.getDefaultText("Profile Description")
+        let descriptionText = TextTypes.getDefaultText("Skill Screen")
 
         return (
             <View style={styles.container}>
                 <View style={styles.topFiller}>
                 </View>
                 <View style = {styles.contents}>
-                    <View style = {styles.username}>
-                            {username}
-                        </View>
-                    <Image
-                        style={styles.stretch}
-                        source={{uri: 'https://reactnative.dev/img/tiny_logo.png'}}
-                    />
-                    <View style = {styles.descriptionText}>
-                        {descriptionText}
-                    </View>
+                  {descriptionText}
                 </View>
                 {navigationBar}
                 <View style={styles.bottomFiller}>
@@ -35,16 +25,11 @@ class ProfileScreen extends Component {
     }
 }
 
-export default ProfileScreen;
+export default SkillScreen;
 
 const styles = StyleSheet.create({
     container: {
       flex: 1,
-    },
-
-    username: {
-        alignItems: 'center',
-        justifyContent: 'center', 
     },
 
     descriptionText: { 
@@ -69,11 +54,4 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: 'lightgrey'
     },
-
-    stretch: {
-        width: 175,
-        height: 125,
-        resizeMode: 'cover',
-        flex: .5
-      }
   });
