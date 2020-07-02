@@ -14,7 +14,7 @@ class LoginScreen extends Component {
         var providerData = firebaseUser.providerData;
         for (var i = 0; i < providerData.length; i++) {
           if (providerData[i].providerId === firebase.auth.GoogleAuthProvider.PROVIDER_ID &&
-              providerData[i].uid === googleUser.getBasicProfile().getId()) {
+              providerData[i].uid === googleUser.idToken) {
             // We don't need to reauth the Firebase connection.
             return true;
           }
@@ -80,7 +80,7 @@ class LoginScreen extends Component {
     }
 
     sendUser = googleUser => {
-      fetch('https://navup-learn-together.herokuapp.com/user/add', {
+      fetch('http://99a150418ff1.ngrok.io/user/add', {
         method: 'POST',
         headers: {
           "Content-Type": "application/json"

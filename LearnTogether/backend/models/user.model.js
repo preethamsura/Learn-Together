@@ -4,12 +4,13 @@ const Schema = mongoose.Schema;
 var User = new Schema({
     username: {type:String,required:false, default:''},
     password: {type:String,required:false, default:''},
+    email:{type: String, required:true},
     name: {type:String,required:true},
     date: {type: Date, required:true},
     skills_completed: [],
     skills_interested: [],
     friends: [],
-    pfp: { type: String },
+    pfp: {type: String},
 },{
     timestamps: true
 })
