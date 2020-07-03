@@ -131,6 +131,9 @@ android {
     }
 
     defaultConfig {
+        manifestPlaceholders = [
+                appAuthRedirectScheme: 'com.firebaseapp.learn-together-a3143'
+        ]
         applicationId "com.learntogether"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
@@ -147,10 +150,10 @@ android {
     }
     signingConfigs {
         debug {
-            storeFile file('debug.keystore')
-            storePassword 'android'
-            keyAlias 'androiddebugkey'
-            keyPassword 'android'
+            storeFile file('/Users/asimbiswal/Desktop/PersonalProjects/Learn-Together/LearnTogether/android/app/debug/keystore')
+            storePassword 'qh2020'
+            keyAlias 'navupkey'
+            keyPassword 'navup2020'
         }
     }
     buildTypes {
