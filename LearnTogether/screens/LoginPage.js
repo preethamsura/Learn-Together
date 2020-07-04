@@ -3,9 +3,11 @@ import {View, StyleSheet} from 'react-native';
 import * as Google from 'expo-google-app-auth';
 import firebase from 'firebase';
 import Button from '../components/Button.js';
+import {graphqlUserSchema} from '../backend/models/user.model'
 
 // Link to the firebase authentication client
 const IOS_CLIENT_ID = "180684653564-384np6iorf773o9su3msm8c074n6hsbb.apps.googleusercontent.com"
+const ANROID_CLIENT_ID = "180684653564-3soavmv4rd89i68mqm9460l3d3u3dsca.apps.googleusercontent.com"
 
 /** Class which lets the user login to their account (currently only using google accounts). */
 class LoginScreen extends Component {
@@ -58,8 +60,9 @@ class LoginScreen extends Component {
       try {
         // Opens up the google sign in so the user can sign in
         const result = await Google.logInAsync({
-          // androidClientId: YOUR_CLIENT_ID_HERE,
+          behavior: 'web',
           iosClientId: IOS_CLIENT_ID,
+          androidClientId: ANROID_CLIENT_ID,
           scopes: ['profile', 'email'],
         });
 
@@ -80,7 +83,7 @@ class LoginScreen extends Component {
     }
 
     sendUser = googleUser => {
-      fetch('https://navup-learn-together.herokuapp.com//user/add', {
+      fetch('https://navup-learn-together.herokuapp.com/user/add', {
         method: 'POST',
         headers: {
           "Content-Type": "application/json"
