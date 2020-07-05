@@ -11,15 +11,7 @@ import { Mutation } from 'react-apollo';
 const IOS_CLIENT_ID = "180684653564-384np6iorf773o9su3msm8c074n6hsbb.apps.googleusercontent.com"
 const ANROID_CLIENT_ID = "180684653564-3soavmv4rd89i68mqm9460l3d3u3dsca.apps.googleusercontent.com"
 
-const ADD_USER = gql`
-  mutation userCreateOne($email: String!, $name: String!, $pfp: String!) {
-    userCreateOne(email: $email, name: $name, pfp: $pfp) {
-      email,
-      name,
-      pfp
-    }
-  }
-`
+
 
 /** Class which lets the user login to their account (currently only using google accounts). */
 class LoginScreen extends Component {
@@ -94,20 +86,29 @@ class LoginScreen extends Component {
     }
 
     sendUser = googleUser => {
+      var name = googleUser.name;
+      var email = googleUser.email;
+      var pfp = googleUser.photoUrl;
+
+      const ADD_USER = `
+        mutation createUser($email: String!, $name: String!, $pfp: String!) {
+           createUser(email: $email, name: $name, pfp: $pfp) {
+             email,
+             name,
+             pfp
+         }
+        }
+      `;
+      
       fetch("https://navup-learn-together.herokuapp.com/graphql", {
         method: 'POST',
         headers: {
           "Content-Type": "application/json",
-          "Accept": 'application/json',
         },
         body: JSON.stringify({
-          ADD_USER, 
-          variables: {
-            email: googleUser.email,
-            name: googleUser.name,
-            pfp: googleUser.photoUrl
-          }
-        })
+          query: ADD_USER,
+          variables: {email, name, pfp}
+        }),
       }).then((response) => response.text()).then((responseJson) => {
         console.log(responseJson);
       })
