@@ -51,9 +51,6 @@ class LoginScreen extends Component {
 
   // Prompts the user to sign in with their gmail account
     signInWithGoogleAsync = async() => {
-      // Just tells us if they clicked on the sign in button
-      console.log('pressed');
-
       // Catches any errors just in case something goes wrong with signing in
       try {
         // Opens up the google sign in so the user can sign in
