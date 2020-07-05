@@ -3,11 +3,23 @@ import {View, StyleSheet} from 'react-native';
 import * as Google from 'expo-google-app-auth';
 import firebase from 'firebase';
 import Button from '../components/Button.js';
-import {graphqlUserSchema} from '../backend/models/user.model'
+import {User} from '../backend/models/user.model'
+import {gql} from 'apollo-boost';
+import { Mutation } from 'react-apollo';
 
 // Link to the firebase authentication client
 const IOS_CLIENT_ID = "180684653564-384np6iorf773o9su3msm8c074n6hsbb.apps.googleusercontent.com"
 const ANROID_CLIENT_ID = "180684653564-3soavmv4rd89i68mqm9460l3d3u3dsca.apps.googleusercontent.com"
+
+const ADD_USER = gql`
+  mutation userCreateOne($email: String!, $name: String!, $pfp: String!) {
+    userCreateOne(email: $email, name: $name, pfp: $pfp) {
+      email,
+      name,
+      pfp
+    }
+  }
+`
 
 /** Class which lets the user login to their account (currently only using google accounts). */
 class LoginScreen extends Component {
@@ -83,19 +95,19 @@ class LoginScreen extends Component {
     }
 
     sendUser = googleUser => {
-      fetch('https://navup-learn-together.herokuapp.com/user/add', {
+      fetch("https://navup-learn-together.herokuapp.com/graphql", {
         method: 'POST',
         headers: {
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
+          "Accept": 'application/json',
         },
         body: JSON.stringify({
-          name: googleUser.name,
-          email: googleUser.email,
-          date: new Date(),
-          skills_completed: [],
-          skills_interested: [],
-          friends: [],
-          pfp: googleUser.photoUrl
+          ADD_USER, 
+          variables: {
+            email: googleUser.email,
+            name: googleUser.name,
+            pfp: googleUser.photoUrl
+          }
         })
       }).then((response) => response.json()).then((responseJson) => {
         console.log(responseJson);
