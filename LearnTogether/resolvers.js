@@ -3,7 +3,7 @@ const Skill = require('./backend/models/skill.model')
 
 const resolvers = {
     Query: {
-        users: ()=> User.find
+        users: ()=> User.find()
     },
     Mutation: {
         createUser: async (_, {email, name, pfp}) => {

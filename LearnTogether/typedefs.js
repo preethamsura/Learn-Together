@@ -9,7 +9,7 @@ const typeDefs = gql`
         pfp: String!
     }
     type Query {
-        users: User
+        users: [User]
     }
 
     type Mutation {

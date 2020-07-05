@@ -72,7 +72,6 @@ class LoginScreen extends Component {
       try {
         // Opens up the google sign in so the user can sign in
         const result = await Google.logInAsync({
-          behavior: 'web',
           iosClientId: IOS_CLIENT_ID,
           androidClientId: ANROID_CLIENT_ID,
           scopes: ['profile', 'email'],
@@ -109,7 +108,7 @@ class LoginScreen extends Component {
             pfp: googleUser.photoUrl
           }
         })
-      }).then((response) => response.json()).then((responseJson) => {
+      }).then((response) => response.text()).then((responseJson) => {
         console.log(responseJson);
       })
     }

@@ -12,13 +12,15 @@ const usersRouter = require('./backend/routes/user');
 const skillsRouter = require('./backend/routes/skill')
 
 // Initialize http server
+
+
 const startServer = async() => {
   const app = express();
   const server = new ApolloServer({
     typeDefs,
     resolvers
   });
-
+  
   server.applyMiddleware({ app });
 
   //server.use('/user', usersRouter);
@@ -34,7 +36,7 @@ const startServer = async() => {
   })
 
   app.listen(port, () => {
-    console.log(`Server is running on port: ${port}${server.graphqlPath}`); 
+    console.log(`Server is running on localhost:${port}${server.graphqlPath}`); 
   }); 
 }
 
