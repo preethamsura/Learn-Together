@@ -3,9 +3,15 @@ import {View, StyleSheet} from 'react-native';
 import * as Google from 'expo-google-app-auth';
 import firebase from 'firebase';
 import Button from '../components/Button.js';
+import {User} from '../backend/models/user.model'
+import {gql} from 'apollo-boost';
+import { Mutation } from 'react-apollo';
 
 // Link to the firebase authentication client
 const IOS_CLIENT_ID = "180684653564-384np6iorf773o9su3msm8c074n6hsbb.apps.googleusercontent.com"
+const ANROID_CLIENT_ID = "180684653564-3soavmv4rd89i68mqm9460l3d3u3dsca.apps.googleusercontent.com"
+
+
 
 /** Class which lets the user login to their account (currently only using google accounts). */
 class LoginScreen extends Component {
@@ -14,7 +20,7 @@ class LoginScreen extends Component {
         var providerData = firebaseUser.providerData;
         for (var i = 0; i < providerData.length; i++) {
           if (providerData[i].providerId === firebase.auth.GoogleAuthProvider.PROVIDER_ID &&
-              providerData[i].uid === googleUser.getBasicProfile().getId()) {
+              providerData[i].uid === googleUser.idToken) {
             // We don't need to reauth the Firebase connection.
             return true;
           }
@@ -58,8 +64,8 @@ class LoginScreen extends Component {
       try {
         // Opens up the google sign in so the user can sign in
         const result = await Google.logInAsync({
-          // androidClientId: YOUR_CLIENT_ID_HERE,
           iosClientId: IOS_CLIENT_ID,
+          androidClientId: ANROID_CLIENT_ID,
           scopes: ['profile', 'email'],
         });
 
@@ -67,7 +73,7 @@ class LoginScreen extends Component {
         // else return that the user was unable to sign in.
         if (result.type === 'success') {
           console.log('success');
-          this.sendUser(result)
+          this.sendUser(result.user)
           this.onSignIn(result);
           return result.accessToken;
         } else {
@@ -80,21 +86,38 @@ class LoginScreen extends Component {
     }
 
     sendUser = googleUser => {
-      fetch('https://navup-learn-together.herokuapp.com/user/add', {
+      var name = googleUser.name;
+      var email = googleUser.email;
+      var pfp = googleUser.photoUrl;
+      var friends = []
+      var skills_completed = []
+      var skills_interested = []
+
+      const ADD_USER = `
+        mutation createUser($email: String!, $name: String!, $pfp: String!, 
+          $friends: [ID!], $skills_completed: [ID!],$skills_interested: [ID!]) {
+           createUser(email: $email, name: $name, pfp: $pfp,
+             freinds:$friends, skills_completed:$skills_completed, skills_interested:$skills_interested) {
+             email,
+             name,
+             pfp,
+             friends,
+             skills_interested,
+             skills_completed
+         }
+        }
+      `;
+      
+      fetch("https://navup-learn-together.herokuapp.com/graphql", {
         method: 'POST',
         headers: {
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          name: googleUser.name,
-          email: googleUser.email,
-          date: new Date(),
-          skills_completed: [],
-          skills_interested: [],
-          friends: [],
-          pfp: googleUser.photoUrl
-        })
-      }).then((response) => response.json()).then((responseJson) => {
+          query: ADD_USER,
+          variables: {email, name, pfp, friends, skills_completed, skills_interested}
+        }),
+      }).then((response) => response.text()).then((responseJson) => {
         console.log(responseJson);
       })
     }
