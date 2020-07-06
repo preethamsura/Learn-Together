@@ -1,8 +1,9 @@
 import React, {Component} from 'react'; 
-import {View, StyleSheet, Image} from 'react-native';
+import {View, StyleSheet, Image, TextInput} from 'react-native';
+import { SearchBar } from 'react-native-elements';
 import TextTypes from '../components/Text.js';
-import Navigation from '../components/NavigationBar.js'
-import Colors from '../components/Colors.js'
+import Navigation from '../components/NavigationBar.js';
+import Colors from '../components/Colors.js';
 
 /** FIX THIS COMMENT EVENTUALLY */
 class SkillScreen extends Component {
@@ -43,7 +44,7 @@ const styles = StyleSheet.create({
     
     contents: {
         flex: 23,
-        alignItems: 'center'
+        alignItems: 'center',
     },
 
     bottomFiller: {
@@ -53,5 +54,10 @@ const styles = StyleSheet.create({
     topFiller: {
         flex: 1,
         backgroundColor: 'black',
+    },
+
+    searchBar: {
+        flex: 1,
+        backgroundColor: 'blue',
     },
   });

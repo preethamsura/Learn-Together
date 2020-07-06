@@ -1,8 +1,8 @@
 import React, {Component} from 'react'; 
 import {View, StyleSheet} from 'react-native';
 import TextTypes from '../components/Text.js';
-import Navigation from '../components/NavigationBar.js'
-import Colors from '../components/Colors.js'
+import Navigation from '../components/NavigationBar.js';
+import Colors from '../components/Colors.js';
 
 /** FIX THIS COMMENT EVENTUALLY */
 class HomeScreen extends Component {
@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
     descriptionText: { 
         flex: 1, 
         fontSize: 26, 
-        alignItems: 'center',
+        alignItems: 'stretch',
         justifyContent: 'center',
     },
     
