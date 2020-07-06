@@ -89,13 +89,21 @@ class LoginScreen extends Component {
       var name = googleUser.name;
       var email = googleUser.email;
       var pfp = googleUser.photoUrl;
+      var friends = []
+      var skills_completed = []
+      var skills_interested = []
 
       const ADD_USER = `
-        mutation createUser($email: String!, $name: String!, $pfp: String!) {
-           createUser(email: $email, name: $name, pfp: $pfp) {
+        mutation createUser($email: String!, $name: String!, $pfp: String!, 
+          $friends: [ID!], $skills_completed: [ID!],$skills_interested: [ID!]) {
+           createUser(email: $email, name: $name, pfp: $pfp,
+             freinds:$friends, skills_completed:$skills_completed, skills_interested:$skills_interested) {
              email,
              name,
-             pfp
+             pfp,
+             friends,
+             skills_interested,
+             skills_completed
          }
         }
       `;
@@ -107,7 +115,7 @@ class LoginScreen extends Component {
         },
         body: JSON.stringify({
           query: ADD_USER,
-          variables: {email, name, pfp}
+          variables: {email, name, pfp, friends, skills_completed, skills_interested}
         }),
       }).then((response) => response.text()).then((responseJson) => {
         console.log(responseJson);

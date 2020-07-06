@@ -6,9 +6,9 @@ var UserSchema = new Schema({
     
     email:{type: String, required:true},
     name: {type:String,required:true},
-    // skills_completed: [],
-    // skills_interested: [],
-    // friends: [],
+    skills_completed: [],
+    skills_interested: [],
+    friends: [],
     pfp: {type: String},
 },{
     timestamps: true
