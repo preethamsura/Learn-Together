@@ -97,7 +97,7 @@ class LoginScreen extends Component {
         mutation createUser($email: String!, $name: String!, $pfp: String!, 
           $friends: [ID!], $skills_completed: [ID!],$skills_interested: [ID!]) {
            createUser(email: $email, name: $name, pfp: $pfp,
-             freinds:$friends, skills_completed:$skills_completed, skills_interested:$skills_interested) {
+             friends:$friends, skills_completed:$skills_completed, skills_interested:$skills_interested) {
              email,
              name,
              pfp,
@@ -108,7 +108,7 @@ class LoginScreen extends Component {
         }
       `;
       
-      fetch("https://navup-learn-together.herokuapp.com/graphql", {
+      fetch("http://10.0.0.125:5000/graphql", {
         method: 'POST',
         headers: {
           "Content-Type": "application/json",

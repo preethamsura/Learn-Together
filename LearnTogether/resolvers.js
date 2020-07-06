@@ -10,9 +10,9 @@ const resolvers = {
         users: ()=> User.find()
     },
     Mutation: {
-        createUser: async (_, {email, name, pfp}) => {
+        createUser: async (_, {email, name, pfp, friends, skills_completed, skills_interested}) => {
            const newUser = new User({
-                name, email, pfp
+                name, email, skills_completed, skills_interested, friends,  pfp,  
            });
            await newUser.save();
            console.log("User added using graphQL!")

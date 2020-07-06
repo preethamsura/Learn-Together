@@ -5,10 +5,10 @@ const typeDefs = gql`
     type User {
         id: ID!
         email: String!
+        name: String!
         skills_completed: [ID!]
         skills_interested: [ID!]
         friends: [ID!]
-        name: String!
         pfp: String!
     }
     type Query {
@@ -17,8 +17,7 @@ const typeDefs = gql`
     }
 
     type Mutation {
-        createUser(email: String!, name: String!, pfp: String!,
-            friends: [ID!], skills_completed: [ID!], skills_interested:[ID!]): User!
+        createUser(email: String!, name: String!, pfp: String!,friends: [ID!], skills_completed: [ID!], skills_interested:[ID!]): User!
     }
 `;
 
