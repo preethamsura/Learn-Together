@@ -13,7 +13,7 @@ class ProfileScreen extends Component {
     /** FIXME
      * @param response 
      */
-    setResponse(response) {
+    setResponse = (response) => {
         this.responseData = response
     }
 
@@ -21,7 +21,7 @@ class ProfileScreen extends Component {
      * @param username = USER_EMAIL 
      */
     setup = (username) => {
-        USER_SCHEMA = `{
+        let USER_SCHEMA = `{
             userByEmail($email:String!) {
                 userByEmail(email: $email) {
                     id,
@@ -32,18 +32,20 @@ class ProfileScreen extends Component {
                 }
             }
         }`
+        this.getuser(username, USER_SCHEMA)
+    }
 
-        /** FIXME  
+    /** FIXME  
          * @param username = USER_EMAIL
          */
-        getuser = (username) => {
+        getuser = (username, USER_SCHEMA) => {
             fetch("http://10.0.0.125:5000/graphql", {
                 method: 'POST',
                 headers: {
                 "Content-Type": "application/json",
                 },
                 body: JSON.stringify({
-                query: USER_SCHEMA,
+                USER_SCHEMA,
                 variables: {username}
                 
                 }),
@@ -51,7 +53,6 @@ class ProfileScreen extends Component {
                 this.setResponse(response);
             })
         }
-    }
     
     render() {
         let navigate = this.props.navigation.navigate
@@ -61,7 +62,7 @@ class ProfileScreen extends Component {
         let USER_EMAIL = USER_EMAIL_LOGIN;
         if (!USER_EMAIL_LOGIN) {
             USER_EMAIL = USER_EMAIL_LOADING;
-        this.setup(USER_EMAIL)
+        this.setup(USER_EMAIL);
         const url = 'https://reactnative.dev/img/tiny_logo.png';
 
         return (
