@@ -15,6 +15,7 @@ class ProfileScreen extends Component {
      */
     setResponse = (response) => {
         this.responseData = response
+        console.log(this.responseData)
     }
 
     /** FIXME
@@ -36,23 +37,22 @@ class ProfileScreen extends Component {
     }
 
     /** FIXME  
-         * @param username = USER_EMAIL
-         */
-        getuser = (username, USER_SCHEMA) => {
-            fetch("http://10.0.0.125:5000/graphql", {
-                method: 'POST',
-                headers: {
-                "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                USER_SCHEMA,
-                variables: {username}
-                
-                }),
-            }).then((response) => response.text()).then((response) => {
-                this.setResponse(response);
-            })
-        }
+     * @param username = USER_EMAIL
+     */
+    getuser = (username, USER_SCHEMA) => {
+        fetch("http://10.0.0.125:5000/graphql", {
+            method: 'POST',
+            headers: {
+            "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+            query: USER_SCHEMA,
+            variables: {username}
+            }),
+        }).then((response) => response.text()).then((response) => {
+            this.setResponse(response);
+        })
+    }
     
     render() {
         let navigate = this.props.navigation.navigate
@@ -62,7 +62,7 @@ class ProfileScreen extends Component {
         let USER_EMAIL = USER_EMAIL_LOGIN;
         if (!USER_EMAIL_LOGIN) {
             USER_EMAIL = USER_EMAIL_LOADING;
-        this.setup(USER_EMAIL);
+        //this.setup(USER_EMAIL);
         const url = 'https://reactnative.dev/img/tiny_logo.png';
 
         return (
@@ -80,7 +80,7 @@ class ProfileScreen extends Component {
                         />
                         <View style = {styles.username}>
                             <Text style = {styles.usernameText}> 
-                                {username}
+                                {USER_EMAIL}
                             </Text>
                         </View>
                         <View style = {styles.belowUsername}>
