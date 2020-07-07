@@ -7,7 +7,10 @@ const resolvers = {
         user: async (_,{id}) => {
             return User.findById(id)
         },
-        users: ()=> User.find()
+        users: ()=> User.find(),
+        userByEmail: async (_,{email}) => {
+            return User.findOne({email: email})
+        }
     },
     Mutation: {
         createUser: async (_, {email, name, pfp, friends, skills_completed, skills_interested}) => {

@@ -5,9 +5,9 @@ import firebase from 'firebase';
 import Button from '../components/Button.js';
 
 // Link to the firebase authentication client
-const IOS_CLIENT_ID = "180684653564-384np6iorf773o9su3msm8c074n6hsbb.apps.googleusercontent.com"
-const ANROID_CLIENT_ID = "180684653564-3soavmv4rd89i68mqm9460l3d3u3dsca.apps.googleusercontent.com"
-let USER_EMAIL;
+const IOS_CLIENT_ID = "180684653564-384np6iorf773o9su3msm8c074n6hsbb.apps.googleusercontent.com";
+const ANROID_CLIENT_ID = "180684653564-3soavmv4rd89i68mqm9460l3d3u3dsca.apps.googleusercontent.com";
+let USER_EMAIL_LOGIN = undefined;
 
 /** Class which lets the user login to their account (currently only using google accounts). */
 class LoginScreen extends Component {
@@ -24,6 +24,7 @@ class LoginScreen extends Component {
       }
       return false;
     }
+
     onSignIn = googleUser => {
       console.log('Google Auth Response', googleUser);
       // We need to register an Observer on Firebase Auth to make sure auth is initialized.
@@ -47,6 +48,7 @@ class LoginScreen extends Component {
           });
         } else {
           console.log('User already signed-in Firebase.');
+          USER_EMAIL_LOGIN = googleUser.email;
         }
       }.bind(this));
     }
@@ -140,7 +142,7 @@ class LoginScreen extends Component {
     }
 }
 
-export {USER_EMAIL};
+export {USER_EMAIL_LOGIN};
 export default LoginScreen;
 
 

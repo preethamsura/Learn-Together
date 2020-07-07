@@ -3,7 +3,9 @@ import {View, StyleSheet, Image, Text} from 'react-native';
 import Navigation from '../components/NavigationBar.js';
 import Colors from '../components/Colors.js';
 import Button from '../components/Button.js';
-import {USER_EMAIL} from './LoginPage.js';
+import {USER_EMAIL_LOGIN} from './LoginPage.js';
+import {USER_EMAIL_LOADING} from './LoadingPage.js';
+
 
 /** FIX THIS COMMENT EVENTUALLY */
 class ProfileScreen extends Component {
@@ -23,7 +25,11 @@ class ProfileScreen extends Component {
         let navigate = this.props.navigation.navigate
         let navigationBar = Navigation.getNavigationBar(navigate);
         let options = Button.getTouchButton("Settings", navigate, "Settings", settingsStyles);
-        const username = 'Name';
+        let USER_EMAIL = USER_EMAIL_LOGIN;
+        if (!USER_EMAIL_LOGIN) {
+            USER_EMAIL = USER_EMAIL_LOADING;
+        }
+        const username = USER_EMAIL;
         const url = 'https://reactnative.dev/img/tiny_logo.png';
 
         return (

@@ -16,7 +16,7 @@ class NavigationBarClass extends Component {
         let touch = Button.getTouchButton;
 
         // Creates the buttons which allow you to navigate from screen to screen
-        let backToLogin = touch("Go Back", navigate, 'LoginScreen', styles);
+        let backToLogin = touch("Login", navigate, 'LoginScreen', styles);
         let goToHome = touch("Home", navigate, 'HomeScreen', styles);
         let goToProfile = touch("Profile", navigate, 'ProfileScreen', styles);
         let goToSkill = touch("Skills", navigate, 'SkillScreen', styles);

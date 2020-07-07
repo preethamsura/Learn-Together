@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {View, StyleSheet, ActivityIndicator} from 'react-native';
 import firebase from 'firebase'
 
+let USER_EMAIL_LOADING = undefined
 /** Class for the loading screen right when the user opens the app. Should either
  * navigate the user to the LoginScreen if the user has not logged into an account
  * or it will navigate the user to the HomeScreen of the app where they can begin
@@ -19,6 +20,7 @@ class LoadingScreen extends Component {
       firebase.auth().onAuthStateChanged(
         function(user) {
           if(user) {
+              USER_EMAIL_LOADING = user.email;
               this.props.navigation.navigate('HomeScreen');
           } else {
               this.props.navigation.navigate('LoginScreen');
@@ -39,6 +41,7 @@ class LoadingScreen extends Component {
     }
 }
 
+export {USER_EMAIL_LOADING};
 export default LoadingScreen;
 
 const styles = StyleSheet.create({
