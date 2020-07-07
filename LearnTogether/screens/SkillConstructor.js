@@ -5,11 +5,11 @@ import Navigation from '../components/NavigationBar.js';
 import Colors from '../components/Colors.js';
 
 /** FIX THIS COMMENT EVENTUALLY */
-class OneSkill extends Component {
+class ConstructSkill extends Component {
     render() {
 
         let navigationBar = Navigation.getNavigationBar(this.props.navigation.navigate);
-        let descriptionText = TextTypes.getDefaultText("Home Screen");
+        let descriptionText = TextTypes.getDefaultText("Default Skill Page");
 
         return (
             <View style={styles.container}>
@@ -26,7 +26,7 @@ class OneSkill extends Component {
     }
 }
 
-export default OneSkill;
+export default ConstructSkill;
 
 const styles = StyleSheet.create({
     container: {

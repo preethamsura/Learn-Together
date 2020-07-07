@@ -3,44 +3,83 @@ import {View, StyleSheet} from 'react-native';
 import TextTypes from '../components/Text.js';
 import Navigation from '../components/NavigationBar.js';
 import Colors from '../components/Colors.js';
-import { ListItem } from 'react-native-elements'
+import Lists from '../components/Lists';
 
 /** FIX THIS COMMENT EVENTUALLY */
 class HomeScreen extends Component {
+
+    /** Return the list of all current chats which this person has. */
+    getChatLists = () => {
+        return (
+            [
+                {
+                    name: 'Uthman Momen',
+                    avatar_url: 'https://reactnative.dev/img/tiny_logo.png',
+                    subtitle: 'UC Berkeley'
+                },
+                {
+                    name: 'Preetham Sura',
+                    avatar_url: 'https://reactnative.dev/img/tiny_logo.png',
+                    subtitle: 'UC Berkeley'
+                },
+                {
+                    name: 'Asim Biswal',
+                    avatar_url: 'https://reactnative.dev/img/tiny_logo.png',
+                    subtitle: 'UC Berkeley'
+                },
+                {
+                    name: 'Nikhil Padavala',
+                    avatar_url: 'https://reactnative.dev/img/tiny_logo.png',
+                    subtitle: 'UC Berkeley'
+                },
+                {
+                    name: 'Vikram Narendar',
+                    avatar_url: 'https://reactnative.dev/img/tiny_logo.png',
+                    subtitle: 'UC Merced'
+                },
+              ]
+        )
+    }
+
+    getSkillLists = () => {
+        return (
+            [
+                {
+                    name: 'React Native',
+                    avatar_url: 'https://reactnative.dev/img/tiny_logo.png',
+                    subtitle: 'UC Berkeley'
+                },
+                {
+                    name: 'Crappy Python Class',
+                    avatar_url: 'https://reactnative.dev/img/tiny_logo.png',
+                    subtitle: 'Stanford'
+                },
+              ]
+        )
+    }
+
     render() {
-        const list = [
-            {
-              name: 'Uthman Momen',
-              avatar_url: 'https://reactnative.dev/img/tiny_logo.png',
-              subtitle: 'Vice President'
-            },
-            {
-              name: 'Preetham Sura',
-              avatar_url: 'https://reactnative.dev/img/tiny_logo.png',
-              subtitle: 'Vice Chairman'
-            },
-          ];
+        let getText = TextTypes.getDefaultText;
 
         let navigationBar = Navigation.getNavigationBar(this.props.navigation.navigate);
-        let descriptionText = TextTypes.getDefaultText("Home Screen");
+        let chatText = getText("Chats");
+        let chatLists = Lists.getListItem(this.getChatLists());
+        let skillText = getText("Current Skills");
+        let skillLists = Lists.getListItem(this.getSkillLists());
 
         return (
             <View style={styles.container}>
                 <View style={styles.topFiller}>
                 </View>
                 <View style = {styles.contents}>
-                  {descriptionText}
-                  {
-                    list.map((l, i) => (
-                    <ListItem style = {styles.list}
-                        key={i}
-                        leftAvatar={{ source: { uri: l.avatar_url } }}
-                        title={l.name}
-                        subtitle={l.subtitle}
-                        bottomDivider
-                    />
-                    ))
-                }
+                  {chatText}
+                  {chatLists}
+
+                  <View style = {styles.topFiller}>
+                  </View>
+                  
+                  {skillText}
+                  {skillLists}
                 </View>
                 {navigationBar}
                 <View style={styles.bottomFiller}>
@@ -78,8 +117,4 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: 'lightgrey',
     },
-
-    list: {
-        alignSelf: 'stretch'
-    }
   });

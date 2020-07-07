@@ -9,27 +9,59 @@ import {USER_EMAIL_LOADING} from './LoadingPage.js';
 
 /** FIX THIS COMMENT EVENTUALLY */
 class ProfileScreen extends Component {
-    // fetch("http://10.0.0.125:5000/graphql", {
-    //     method: 'POST',
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //     body: JSON.stringify({
-    //       query: ADD_USER,
-    //       variables: {email, name, pfp, friends, skills_completed, skills_interested}
-    //     }),
-    //   }).then((response) => response.text()).then((responseJson) => {
-    //     console.log(responseJson);
-    //   })
+
+    /** FIXME
+     * @param response 
+     */
+    setResponse(response) {
+        this.responseData = response
+    }
+
+    /** FIXME
+     * @param username = USER_EMAIL 
+     */
+    setup = (username) => {
+        USER_SCHEMA = `{
+            userByEmail($email:String!) {
+                userByEmail(email: $email) {
+                    id,
+                    name,
+                    skills_completed,
+                    skill_interested,
+                    friends
+                }
+            }
+        }`
+
+        /** FIXME  
+         * @param username = USER_EMAIL
+         */
+        getuser = (username) => {
+            fetch("http://10.0.0.125:5000/graphql", {
+                method: 'POST',
+                headers: {
+                "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                query: USER_SCHEMA,
+                variables: {username}
+                
+                }),
+            }).then((response) => response.text()).then((response) => {
+                this.setResponse(response);
+            })
+        }
+    }
+    
     render() {
         let navigate = this.props.navigation.navigate
         let navigationBar = Navigation.getNavigationBar(navigate);
         let options = Button.getTouchButton("Settings", navigate, "Settings", settingsStyles);
+
         let USER_EMAIL = USER_EMAIL_LOGIN;
         if (!USER_EMAIL_LOGIN) {
             USER_EMAIL = USER_EMAIL_LOADING;
-        }
-        const username = USER_EMAIL;
+        this.setup(USER_EMAIL)
         const url = 'https://reactnative.dev/img/tiny_logo.png';
 
         return (
@@ -71,6 +103,7 @@ class ProfileScreen extends Component {
             </View>
         )
     }
+}
 }
 
 export default ProfileScreen;
