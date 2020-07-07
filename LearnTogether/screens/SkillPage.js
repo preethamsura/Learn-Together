@@ -1,6 +1,5 @@
 import React, {Component} from 'react'; 
 import {View, StyleSheet, Image, TextInput} from 'react-native';
-import { SearchBar } from 'react-native-elements';
 import TextTypes from '../components/Text.js';
 import Navigation from '../components/NavigationBar.js';
 import Colors from '../components/Colors.js';
@@ -11,7 +10,6 @@ class SkillScreen extends Component {
 
         let navigationBar = Navigation.getNavigationBar(this.props.navigation.navigate);
         let descriptionText = TextTypes.getDefaultText("Skill Screen");
-
         return (
             <View style={styles.container}>
                 <View style={styles.topFiller}>
@@ -53,7 +51,7 @@ const styles = StyleSheet.create({
 
     topFiller: {
         flex: 1,
-        backgroundColor: 'black',
+        backgroundColor: 'lightgrey',
     },
 
     searchBar: {

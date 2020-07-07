@@ -52,6 +52,6 @@ const styles = StyleSheet.create({
 
     topFiller: {
         flex: 1,
-        backgroundColor: 'black',
+        backgroundColor: 'lightgrey',
     },
   });

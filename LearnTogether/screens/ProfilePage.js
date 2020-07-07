@@ -3,13 +3,28 @@ import {View, StyleSheet, Image, Text} from 'react-native';
 import Navigation from '../components/NavigationBar.js';
 import Colors from '../components/Colors.js';
 import Button from '../components/Button.js';
+import {USER_EMAIL} from './LoginPage.js';
 
 /** FIX THIS COMMENT EVENTUALLY */
 class ProfileScreen extends Component {
+    // fetch("http://10.0.0.125:5000/graphql", {
+    //     method: 'POST',
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //     },
+    //     body: JSON.stringify({
+    //       query: ADD_USER,
+    //       variables: {email, name, pfp, friends, skills_completed, skills_interested}
+    //     }),
+    //   }).then((response) => response.text()).then((responseJson) => {
+    //     console.log(responseJson);
+    //   })
     render() {
         let navigate = this.props.navigation.navigate
         let navigationBar = Navigation.getNavigationBar(navigate);
         let options = Button.getTouchButton("Settings", navigate, "Settings", settingsStyles);
+        const username = 'Name';
+        const url = 'https://reactnative.dev/img/tiny_logo.png';
 
         return (
             <View style={styles.container}>
@@ -22,11 +37,11 @@ class ProfileScreen extends Component {
                     <View style = {styles.contentsBottom}>
                         <Image
                             style={styles.stretch}
-                            source={{uri: 'https://reactnative.dev/img/tiny_logo.png'}}
+                            source={{uri: url}}
                         />
                         <View style = {styles.username}>
                             <Text style = {styles.usernameText}> 
-                                Username 
+                                {username}
                             </Text>
                         </View>
                         <View style = {styles.belowUsername}>
@@ -82,7 +97,7 @@ const styles = StyleSheet.create({
 
     topFiller: {
         flex: 1,
-        backgroundColor: 'black'
+        backgroundColor: 'lightgrey'
     },
 
     contentsTop: {

@@ -3,15 +3,11 @@ import {View, StyleSheet} from 'react-native';
 import * as Google from 'expo-google-app-auth';
 import firebase from 'firebase';
 import Button from '../components/Button.js';
-import {User} from '../backend/models/user.model'
-import {gql} from 'apollo-boost';
-import { Mutation } from 'react-apollo';
 
 // Link to the firebase authentication client
 const IOS_CLIENT_ID = "180684653564-384np6iorf773o9su3msm8c074n6hsbb.apps.googleusercontent.com"
 const ANROID_CLIENT_ID = "180684653564-3soavmv4rd89i68mqm9460l3d3u3dsca.apps.googleusercontent.com"
-
-
+let USER_EMAIL;
 
 /** Class which lets the user login to their account (currently only using google accounts). */
 class LoginScreen extends Component {
@@ -116,9 +112,9 @@ class LoginScreen extends Component {
         }),
       }).then((response) => response.text()).then((responseJson) => {
         console.log(responseJson);
+        USER_EMAIL = googleUser.email;
       })
     }
-
     // Creates the loading screen which only has one button which allows the user to login
     // to the app using google.
     render() {
@@ -144,7 +140,9 @@ class LoginScreen extends Component {
     }
 }
 
+export {USER_EMAIL};
 export default LoginScreen;
+
 
 const styles = StyleSheet.create({
     container: {
