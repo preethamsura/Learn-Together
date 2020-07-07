@@ -57,9 +57,6 @@ class LoginScreen extends Component {
 
   // Prompts the user to sign in with their gmail account
     signInWithGoogleAsync = async() => {
-      // Just tells us if they clicked on the sign in button
-      console.log('pressed');
-
       // Catches any errors just in case something goes wrong with signing in
       try {
         // Opens up the google sign in so the user can sign in
@@ -126,16 +123,19 @@ class LoginScreen extends Component {
     // to the app using google.
     render() {
       let touch = Button.getTouchButton
+      let social = Button.getSocialButton
 
       // Creates the 3 current buttons which are being used on the home screen.
-      let signInButton  = touch("Sign in with Google", this.signInWithGoogleAsync);
+      let googleSignIn  = social("Sign in with Google", 'google', this.signInWithGoogleAsync, undefined, styles);
+      let facebookSignIn = social("Sign in with Facebook (Not Avail)", 'facebook', this.signInWithGoogleAsync, undefined, styles)
       let homeScreenButton = touch("Go To Home Screen", this.props.navigation.navigate, 'HomeScreen');
       let profileScreenButton = touch("Go To Profile Screen", this.props.navigation.navigate, 'ProfileScreen');
       let skillScreenButton = touch("Go To Skill Screen", this.props.navigation.navigate, 'SkillScreen');
       return (
         // Creates the view with all the buttons that are needed
         <View style = {styles.container}>
-          {signInButton}
+          {googleSignIn}
+          {facebookSignIn}
           {homeScreenButton}
           {profileScreenButton}
           {skillScreenButton}
@@ -156,6 +156,13 @@ const styles = StyleSheet.create({
 
     view: {
       alignContent: 'center',
+      alignItems: 'center',
+    }, 
+    
+    Touch: {
+      borderRadius: 20,
+      padding: 12,
+      width: 300,
       alignItems: 'center',
     }
   });

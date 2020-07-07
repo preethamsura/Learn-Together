@@ -1,14 +1,16 @@
 import React, {Component} from 'react'; 
-import {View, StyleSheet, Image} from 'react-native';
+import {View, StyleSheet, Image, TextInput} from 'react-native';
+import { SearchBar } from 'react-native-elements';
 import TextTypes from '../components/Text.js';
-import Navigation from '../components/NavigationBar.js'
+import Navigation from '../components/NavigationBar.js';
+import Colors from '../components/Colors.js';
 
 /** FIX THIS COMMENT EVENTUALLY */
 class SkillScreen extends Component {
     render() {
 
-        let navigationBar = Navigation.getNavigationBar(this.props.navigation.navigate)
-        let descriptionText = TextTypes.getDefaultText("Skill Screen")
+        let navigationBar = Navigation.getNavigationBar(this.props.navigation.navigate);
+        let descriptionText = TextTypes.getDefaultText("Skill Screen");
 
         return (
             <View style={styles.container}>
@@ -30,6 +32,7 @@ export default SkillScreen;
 const styles = StyleSheet.create({
     container: {
       flex: 1,
+      backgroundColor: Colors.getBackgroundColor()
     },
 
     descriptionText: { 
@@ -41,17 +44,20 @@ const styles = StyleSheet.create({
     
     contents: {
         flex: 23,
-        backgroundColor: 'lightgrey',
-        alignItems: 'center'
+        alignItems: 'center',
     },
 
     bottomFiller: {
         flex: .5,
-        backgroundColor: 'lightgrey'
     },
 
     topFiller: {
         flex: 1,
-        backgroundColor: 'lightgrey'
+        backgroundColor: 'black',
+    },
+
+    searchBar: {
+        flex: 1,
+        backgroundColor: 'blue',
     },
   });

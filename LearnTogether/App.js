@@ -6,6 +6,7 @@ import LoadingScreen from './screens/LoadingPage.js';
 import HomeScreen from './screens/HomePage.js';
 import ProfileScreen from './screens/ProfilePage.js';
 import SkillScreen from './screens/SkillPage.js'
+import Settings from './screens/Settings.js'
 
 import firebase from 'firebase';
 
@@ -32,6 +33,7 @@ const AppSwitchNavigator = createSwitchNavigator({
   HomeScreen:HomeScreen,
   ProfileScreen:ProfileScreen,
   SkillScreen:SkillScreen,
+  Settings:Settings,
 });
 
 const AppNavigator = createAppContainer(AppSwitchNavigator);

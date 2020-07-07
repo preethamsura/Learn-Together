@@ -1,5 +1,6 @@
 import React, {Component} from 'react'; 
 import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
+import { SocialIcon } from 'react-native-elements';
 
 /** Class which holds different types of buttons that can be used for this project.*/
 class Buttons extends Component {
@@ -26,6 +27,30 @@ class Buttons extends Component {
           </TouchableOpacity>
           )
     }
+
+    /** Creates and returns a social icon button which can be used to represent different social medias networks.
+     * @param text = text which the button should display. Will be empty string if no method is passed in.
+     * @param buttonType = type of social media network that this button should represent
+     * @param method = Method which the button should run on click
+     * @param argument = Argument/arguments for the method if they are required.
+     * @return = Social media button with the set parameters
+    */
+    getSocialButton = (text = "", buttonType = 'google', method, argument = undefined, style = undefined) => {
+      let styles;
+      if (style != undefined) {
+        styles = style
+      } else {
+        styles = defaultStyles
+      }
+      return (
+        <SocialIcon style = {styles.Touch}
+            title= {text}
+            button
+            onPress={() => method(argument)}
+            type= {buttonType}
+          />
+      )
+    }
 }
 
 const Button = new Buttons();
@@ -33,11 +58,11 @@ export default Button;
 
 const defaultStyles = StyleSheet.create({
     Touch: {
-      backgroundColor: 'lightgrey',
       borderRadius: 20,
       padding: 12,
       width: 300,
       alignItems: 'center',
+      backgroundColor: 'lightgrey'
     },
 
     ButtonView: {
