@@ -3,10 +3,23 @@ import {View, StyleSheet} from 'react-native';
 import TextTypes from '../components/Text.js';
 import Navigation from '../components/NavigationBar.js';
 import Colors from '../components/Colors.js';
+import { ListItem } from 'react-native-elements'
 
 /** FIX THIS COMMENT EVENTUALLY */
 class HomeScreen extends Component {
     render() {
+        const list = [
+            {
+              name: 'Uthman Momen',
+              avatar_url: 'https://reactnative.dev/img/tiny_logo.png',
+              subtitle: 'Vice President'
+            },
+            {
+              name: 'Preetham Sura',
+              avatar_url: 'https://reactnative.dev/img/tiny_logo.png',
+              subtitle: 'Vice Chairman'
+            },
+          ];
 
         let navigationBar = Navigation.getNavigationBar(this.props.navigation.navigate);
         let descriptionText = TextTypes.getDefaultText("Home Screen");
@@ -17,6 +30,17 @@ class HomeScreen extends Component {
                 </View>
                 <View style = {styles.contents}>
                   {descriptionText}
+                  {
+                    list.map((l, i) => (
+                    <ListItem style = {styles.list}
+                        key={i}
+                        leftAvatar={{ source: { uri: l.avatar_url } }}
+                        title={l.name}
+                        subtitle={l.subtitle}
+                        bottomDivider
+                    />
+                    ))
+                }
                 </View>
                 {navigationBar}
                 <View style={styles.bottomFiller}>
@@ -43,7 +67,7 @@ const styles = StyleSheet.create({
     
     contents: {
         flex: 23,
-        alignItems: 'center'
+        alignItems: 'center',
     },
 
     bottomFiller: {
@@ -54,4 +78,8 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: 'lightgrey',
     },
+
+    list: {
+        alignSelf: 'stretch'
+    }
   });

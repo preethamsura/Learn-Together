@@ -3,6 +3,8 @@ import {View, StyleSheet} from 'react-native';
 import * as Google from 'expo-google-app-auth';
 import firebase from 'firebase';
 import Button from '../components/Button.js';
+import Navigation from '../components/NavigationBar.js';
+import Colors from '../components/Colors.js';
 
 // Link to the firebase authentication client
 const IOS_CLIENT_ID = "180684653564-384np6iorf773o9su3msm8c074n6hsbb.apps.googleusercontent.com";
@@ -126,18 +128,20 @@ class LoginScreen extends Component {
       // Creates the 3 current buttons which are being used on the home screen.
       let googleSignIn  = social("Sign in with Google", 'google', this.signInWithGoogleAsync, undefined, styles);
       let facebookSignIn = social("Sign in with Facebook (Not Avail)", 'facebook', this.signInWithGoogleAsync, undefined, styles)
-      let homeScreenButton = touch("Go To Home Screen", this.props.navigation.navigate, 'HomeScreen');
-      let profileScreenButton = touch("Go To Profile Screen", this.props.navigation.navigate, 'ProfileScreen');
-      let skillScreenButton = touch("Go To Skill Screen", this.props.navigation.navigate, 'SkillScreen');
+      let navigationBar = Navigation.getNavigationBar(this.props.navigation.navigate);
       return (
         // Creates the view with all the buttons that are needed
         <View style = {styles.container}>
-          {googleSignIn}
-          {facebookSignIn}
-          {homeScreenButton}
-          {profileScreenButton}
-          {skillScreenButton}
+          <View style={styles.topFiller}>
+          </View>
+          <View style = {styles.contents}>
+            {googleSignIn}
+            {facebookSignIn}
+          </View>
+          {navigationBar}
+        <View style={styles.bottomFiller}>
         </View>
+    </View>
       )
     }
 }
@@ -149,9 +153,28 @@ export default LoginScreen;
 const styles = StyleSheet.create({
     container: {
       flex: 1,
-      backgroundColor: 'white',
-      alignItems: 'center',
-      justifyContent: 'center',
+      backgroundColor: Colors.getBackgroundColor()
+    },
+
+    descriptionText: { 
+        flex: 1, 
+        fontSize: 26, 
+        alignItems: 'stretch',
+        justifyContent: 'center',
+    },
+    
+    contents: {
+        flex: 23,
+        alignItems: 'center'
+    },
+
+    bottomFiller: {
+        flex: .5,
+    },
+
+    topFiller: {
+        flex: 1,
+        backgroundColor: 'lightgrey',
     },
 
     view: {
