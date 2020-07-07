@@ -105,7 +105,7 @@ class LoginScreen extends Component {
 
       // Creates the 3 current buttons which are being used on the home screen.
       let googleSignIn  = social("Sign in with Google", 'google', this.signInWithGoogleAsync, undefined, styles);
-      let facebookSignIn = social("Sign in with Facebook", 'facebook', this.signInWithGoogleAsync, undefined, styles)
+      let facebookSignIn = social("Sign in with Facebook (Not Avail)", 'facebook', this.signInWithGoogleAsync, undefined, styles)
       let homeScreenButton = touch("Go To Home Screen", this.props.navigation.navigate, 'HomeScreen');
       let profileScreenButton = touch("Go To Profile Screen", this.props.navigation.navigate, 'ProfileScreen');
       let skillScreenButton = touch("Go To Skill Screen", this.props.navigation.navigate, 'SkillScreen');
