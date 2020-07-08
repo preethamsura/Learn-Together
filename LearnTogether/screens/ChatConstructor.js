@@ -1,24 +1,48 @@
-import React, {Component} from 'react'; 
+import React, {Component, useCallback, useState, useEffect} from 'react'; 
 import {View, StyleSheet} from 'react-native';
-import TextTypes from '../components/Text.js';
-import Navigation from '../components/NavigationBar.js';
 import Colors from '../components/Colors.js';
+import { GiftedChat } from 'react-native-gifted-chat';
 
 /** FIX THIS COMMENT EVENTUALLY */
-class ConstructChat extends Component {
+class ChatScreen extends Component {
+    static navigationOptions = ({ navigation }) => ({
+        title: (navigation.state.params || {}).name || 'Chat!',
+      });
+
+      state = {
+        messages: [
+            {
+              _id: 1,
+              text: 'This is a test message',
+              createdAt: new Date(),
+              user: {
+                _id: 1,
+                name: 'React Native',
+                avatar: 'https://placeimg.com/140/140/any',
+              },
+            },
+        ]
+      };
+
+      onSend = (newMessages = []) => {
+        this.state.messages.unshift(newMessages[0]);
+        GiftedChat.append(newMessages, this.state.messages)
+      };
+
     render() {
-
-        let navigationBar = Navigation.getNavigationBar(this.props.navigation.navigate);
-        let descriptionText = TextTypes.getDefaultText("Default Skill Page");
-
         return (
             <View style={styles.container}>
                 <View style={styles.topFiller}>
                 </View>
                 <View style = {styles.contents}>
-                  {descriptionText}
+                    <GiftedChat
+                        messages={this.state.messages}
+                        onSend = {messages => this.onSend(messages)}
+                        user={{
+                            _id: 1,
+                        }}
+                    />
                 </View>
-                {navigationBar}
                 <View style={styles.bottomFiller}>
                 </View>
             </View>
@@ -26,12 +50,13 @@ class ConstructChat extends Component {
     }
 }
 
-export default ConstructChat;
+export default ChatScreen;
 
 const styles = StyleSheet.create({
     container: {
       flex: 1,
-      backgroundColor: Colors.getBackgroundColor()
+      backgroundColor: Colors.getBackgroundColor(),
+      alignItems: 'stretch'
     },
 
     descriptionText: { 
@@ -43,11 +68,12 @@ const styles = StyleSheet.create({
     
     contents: {
         flex: 23,
-        alignItems: 'center'
+        alignItems: 'stretch'
     },
 
     bottomFiller: {
         flex: .5,
+        backgroundColor: 'lightgrey'
     },
 
     topFiller: {

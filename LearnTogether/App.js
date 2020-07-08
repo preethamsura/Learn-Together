@@ -11,6 +11,7 @@ import Settings from './screens/Settings.js'
 import firebase from 'firebase';
 
 import {firebaseConfig} from './config.js'
+import ChatScreen from './screens/ChatConstructor.js';
 
 // Initializes the firebase so that the user can sign in.
 firebase.initializeApp(firebaseConfig);
@@ -34,6 +35,7 @@ const AppSwitchNavigator = createSwitchNavigator({
   ProfileScreen:ProfileScreen,
   SkillScreen:SkillScreen,
   Settings:Settings,
+  ChatScreen:ChatScreen,
 });
 
 const AppNavigator = createAppContainer(AppSwitchNavigator);

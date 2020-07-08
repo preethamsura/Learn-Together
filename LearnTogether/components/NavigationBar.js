@@ -1,5 +1,5 @@
 import React, {Component} from 'react'; 
-import {View, StyleSheet,} from 'react-native';
+import {View, StyleSheet, TouchableOpacity, Text} from 'react-native';
 import Button from './Button.js';
 
 /** Class which holds the navigation bar info. Can call getNavigationBar to get the 
@@ -20,6 +20,7 @@ class NavigationBarClass extends Component {
         let goToHome = touch("Home", navigate, 'HomeScreen', styles);
         let goToProfile = touch("Profile", navigate, 'ProfileScreen', styles);
         let goToSkill = touch("Skills", navigate, 'SkillScreen', styles);
+        let goToChat = touch("Chat", navigate, ["ChatScreen", {name: "Preetham"}], styles)
 
         // Creates and returns the navigation bar with evenly spaced buttons
         return (
@@ -28,6 +29,13 @@ class NavigationBarClass extends Component {
                     {goToHome}
                     {goToProfile}
                     {goToSkill}
+                    <TouchableOpacity style = {styles.Touch} onPress={() => navigate("ChatScreen", {name: "Preetham"})}>
+                      <View style={styles.ButtonView}> 
+                          <Text style={styles.ButtonText}>
+                              Chat
+                              </Text>
+                          </View>
+                      </TouchableOpacity>
                 </View>
         )
     }
