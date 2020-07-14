@@ -14,10 +14,12 @@ class ProfileScreen extends Component {
      * @param response 
      */
     setResponse = (response) => {
-        this.responseData = response
-        let data_array = this.responseData.split("{")
-        data_array = data_array[3]
-        console.log(data_array[3])
+        
+        global.responseData = response
+        global.obj = JSON.parse(responseData)
+        //console.log(obj)
+        obj = obj.data.userByEmail
+        //console.log(obj.pfp)
     }
 
     /** FIXME
@@ -31,7 +33,8 @@ class ProfileScreen extends Component {
                     name,
                     skills_completed,
                     skills_interested,
-                    friends
+                    friends,
+                    pfp
                 }
             }
         `
@@ -67,6 +70,10 @@ class ProfileScreen extends Component {
             USER_EMAIL = USER_EMAIL_LOADING;
         //this.getuser(username, USER_SCHEMA)
         this.setup(USER_EMAIL);
+        const user_data = global.obj
+        const name = user_data.name
+        const pfp = user_data.pfp
+
         const url = 'https://reactnative.dev/img/tiny_logo.png';
 
         return (
@@ -80,11 +87,11 @@ class ProfileScreen extends Component {
                     <View style = {styles.contentsBottom}>
                         <Image
                             style={styles.stretch}
-                            source={{uri: url}}
+                            source={{uri: pfp}}
                         />
                         <View style = {styles.username}>
                             <Text style = {styles.usernameText}> 
-                                {USER_EMAIL}
+                                {name}
                             </Text>
                         </View>
                         <View style = {styles.belowUsername}>
