@@ -15,24 +15,26 @@ class ProfileScreen extends Component {
      */
     setResponse = (response) => {
         this.responseData = response
-        console.log(this.responseData)
+        let data_array = this.responseData.split("{")
+        data_array = data_array[3]
+        console.log(data_array[3])
     }
 
     /** FIXME
      * @param username = USER_EMAIL 
      */
     setup = (username) => {
-        let USER_SCHEMA = `{
-            userByEmail($email:String!) {
+        let USER_SCHEMA = `
+            query userByEmail($email: String!) {
                 userByEmail(email: $email) {
                     id,
                     name,
                     skills_completed,
-                    skill_interested,
+                    skills_interested,
                     friends
                 }
             }
-        }`
+        `
         this.getuser(username, USER_SCHEMA)
     }
 
@@ -40,6 +42,7 @@ class ProfileScreen extends Component {
      * @param username = USER_EMAIL
      */
     getuser = (username, USER_SCHEMA) => {
+        let email = username
         fetch("http://10.0.0.125:5000/graphql", {
             method: 'POST',
             headers: {
@@ -47,7 +50,7 @@ class ProfileScreen extends Component {
             },
             body: JSON.stringify({
             query: USER_SCHEMA,
-            variables: {username}
+            variables: {email}
             }),
         }).then((response) => response.text()).then((response) => {
             this.setResponse(response);
@@ -62,7 +65,8 @@ class ProfileScreen extends Component {
         let USER_EMAIL = USER_EMAIL_LOGIN;
         if (!USER_EMAIL_LOGIN) {
             USER_EMAIL = USER_EMAIL_LOADING;
-        //this.setup(USER_EMAIL);
+        //this.getuser(username, USER_SCHEMA)
+        this.setup(USER_EMAIL);
         const url = 'https://reactnative.dev/img/tiny_logo.png';
 
         return (
