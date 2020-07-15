@@ -1,4 +1,4 @@
-import React from 'react';
+/* import React from 'react';
 import {createAppContainer, createSwitchNavigator} from 'react-navigation';
 
 import LoginScreen from './screens/LoginPage.js';
@@ -15,11 +15,13 @@ import ChatScreen from './screens/ChatConstructor.js';
 
 // Initializes the firebase so that the user can sign in.
 firebase.initializeApp(firebaseConfig);
+*/
+
 
 /** Initial file which is ran which starts the firebase and takes the user to the 
  * loading screen. 
  */
-export default class App extends React.Component {
+/*export default class App extends React.Component {
   render() {
     // Initializes the app with the navigator. The default page which is ran
     // first is the loading screen which runs the rest. 
@@ -39,3 +41,31 @@ const AppSwitchNavigator = createSwitchNavigator({
 });
 
 const AppNavigator = createAppContainer(AppSwitchNavigator);
+*/
+
+import * as React from 'react';
+import { View, Text } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+
+function HomeScreen() {
+  return (
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <Text>Home Screen</Text>
+    </View>
+  );
+}
+
+const Stack = createStackNavigator();
+
+function App() {
+  return (
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="Home" component={HomeScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
+}
+
+export default App;
