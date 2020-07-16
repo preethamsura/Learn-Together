@@ -7,6 +7,8 @@ import LoginScreen from './screens/LoginPage.js';
 import HomeScreen from './screens/HomePage.js';
 import ProfileScreen from './screens/ProfilePage.js';
 import SkillScreen from './screens/SkillPage.js'
+import Settings from './screens/Settings.js';
+import ChatScreen from './screens/ChatConstructor.js';
 
 
 import firebase from 'firebase';
@@ -16,12 +18,13 @@ import {firebaseConfig} from './config.js'
 firebase.initializeApp(firebaseConfig);
 
 const Tab = createBottomTabNavigator();
+const Stack = createStackNavigator();
 
 global.USER_EMAIL = 'Test';
 let loggedIn = false;
 
 /** ADD A COMMENT */
-function MyTabs() {
+function AppScreens() {
   return (
     <Tab.Navigator>
       <Tab.Screen name="LoginScreen" component={LoginScreen} />
@@ -50,7 +53,19 @@ function App() {
   checkIfLoggedIn();
   return (
     <NavigationContainer>
-      {MyTabs()}
+      <Stack.Navigator>
+        <Stack.Screen
+          name="Go Back"
+          component={AppScreens}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen name="Settings" component = {Settings}/>
+        <Stack.Screen 
+          name="Chat" 
+          component = {ChatScreen}
+          options={({ route }) => ({ title: route.params.name })}
+          />
+      </Stack.Navigator>
     </NavigationContainer>
   );
 }

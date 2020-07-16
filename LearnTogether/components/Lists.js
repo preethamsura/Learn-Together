@@ -6,7 +6,7 @@ import { ListItem } from 'react-native-elements';
 class ListsClass extends Component {
     
     /** FIXME */
-    getListItem = (list, style = undefined) => {
+    getListItem = (list, style = undefined, method = undefined) => {
         let styles;
         if (style != undefined) {
             styles = style
@@ -23,6 +23,7 @@ class ListsClass extends Component {
                     title={l.name}
                     subtitle={l.subtitle}
                     bottomDivider
+                    onPress={() => method.navigate("Chat", {title: l.name,})}
                 />
                 ))
                 }

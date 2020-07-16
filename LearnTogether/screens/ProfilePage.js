@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import {View, StyleSheet, Image, Text} from 'react-native';
 import Colors from '../components/Colors.js';
 import Button from '../components/Button.js';
-import Settings from './Settings.js';
 import { createStackNavigator } from '@react-navigation/stack';
 
 
@@ -112,7 +111,6 @@ class ProfileScreen extends Component {
                     headerShown: false
                 }} >
                 <Stack.Screen name="Profile" component={this.ProfileScreen} />
-                <Stack.Screen name="Settings" component={Settings} />
             </Stack.Navigator>
         )
     }

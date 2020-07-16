@@ -62,9 +62,9 @@ class HomeScreen extends Component {
         let getText = TextTypes.getDefaultText;
         
         let chatText = getText("Chats");
-        let chatLists = Lists.getListItem(this.getChatLists());
+        let chatLists = Lists.getListItem(this.getChatLists(), undefined, this.props.navigation);
         let skillText = getText("Current Skills");
-        let skillLists = Lists.getListItem(this.getSkillLists());
+        let skillLists = Lists.getListItem(this.getSkillLists(), undefined, this.props.navigation);
 
         return (
             <View style={styles.container}>
