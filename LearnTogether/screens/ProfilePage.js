@@ -1,10 +1,12 @@
 import React, {Component} from 'react'; 
 import {View, StyleSheet, Image, Text} from 'react-native';
-import Navigation from '../components/NavigationBar.js';
 import Colors from '../components/Colors.js';
 import Button from '../components/Button.js';
-import {USER_EMAIL_LOGIN} from './LoginPage.js';
-import {USER_EMAIL_LOADING} from './LoadingPage.js';
+import Settings from './Settings.js';
+import { createStackNavigator } from '@react-navigation/stack';
+
+
+const Stack = createStackNavigator();
 
 
 /** FIX THIS COMMENT EVENTUALLY */
@@ -53,19 +55,21 @@ class ProfileScreen extends Component {
             this.setResponse(response);
         })
     }
-    
-    render() {
+
+    /** COMMENT THIS FUNCTION */
+    ProfileScreen = () => { 
         let navigate = this.props.navigation.navigate
         let options = Button.getTouchButton("Settings", navigate, "Settings", settingsStyles);
 
-        let USER_EMAIL = USER_EMAIL_LOGIN;
-        if (!USER_EMAIL_LOGIN) {
-            USER_EMAIL = USER_EMAIL_LOADING;
         //this.setup(USER_EMAIL);
         const url = 'https://reactnative.dev/img/tiny_logo.png';
 
+        console.log(global.USER_EMAIL)
+
         return (
             <View style={styles.container}>
+                <View style = {styles.topFiller}>
+                </View>
                 <View style = {styles.contents}>
                     <View style = {styles.contentsTop}> 
                         {options}
@@ -77,7 +81,7 @@ class ProfileScreen extends Component {
                         />
                         <View style = {styles.username}>
                             <Text style = {styles.usernameText}> 
-                                {USER_EMAIL}
+                                {global.USER_EMAIL}
                             </Text>
                         </View>
                         <View style = {styles.belowUsername}>
@@ -100,7 +104,18 @@ class ProfileScreen extends Component {
             </View>
         )
     }
-}
+    
+    render() {
+        return (
+            <Stack.Navigator
+                screenOptions={{
+                    headerShown: false
+                }} >
+                <Stack.Screen name="Profile" component={this.ProfileScreen} />
+                <Stack.Screen name="Settings" component={Settings} />
+            </Stack.Navigator>
+        )
+    }
 }
 
 export default ProfileScreen;

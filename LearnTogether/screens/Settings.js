@@ -1,12 +1,19 @@
 import React, {Component} from 'react'; 
 import {View, StyleSheet, Text} from 'react-native';
 import Colors from '../components/Colors.js';
+import Button from '../components/Button.js'
 
 /** FIX THIS COMMENT EVENTUALLY */
 class Settings extends Component {
     render() {
+        let navigate = this.props.navigation.navigate
+        let goProfile = Button.getTouchButton("Go Back", navigate, "Profile", styles);
         return (
             <View style={styles.container}>
+                <View style = {styles.topFiller}>
+                </View>
+                <Text style = {styles.descriptionText}> Settings</Text>
+                {goProfile}
             </View>
         )
     }
