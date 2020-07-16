@@ -56,7 +56,6 @@ class ProfileScreen extends Component {
     
     render() {
         let navigate = this.props.navigation.navigate
-        let navigationBar = Navigation.getNavigationBar(navigate);
         let options = Button.getTouchButton("Settings", navigate, "Settings", settingsStyles);
 
         let USER_EMAIL = USER_EMAIL_LOGIN;
@@ -67,8 +66,6 @@ class ProfileScreen extends Component {
 
         return (
             <View style={styles.container}>
-                <View style={styles.topFiller}>
-                </View>
                 <View style = {styles.contents}>
                     <View style = {styles.contentsTop}> 
                         {options}
@@ -98,7 +95,6 @@ class ProfileScreen extends Component {
                         </View>
                     </View>
                 </View>
-                {navigationBar}
                 <View style={styles.filler}>
                 </View>
             </View>

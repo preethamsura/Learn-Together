@@ -21,7 +21,7 @@ class LoadingScreen extends Component {
         function(user) {
           if(user) {
               USER_EMAIL_LOADING = user.email;
-              this.props.navigation.navigate('HomeScreen');
+              this.props.navigation.navigate('Home');
           } else {
               this.props.navigation.navigate('LoginScreen');
           }

@@ -3,7 +3,6 @@ import {View, StyleSheet} from 'react-native';
 import * as Google from 'expo-google-app-auth';
 import firebase from 'firebase';
 import Button from '../components/Button.js';
-import Navigation from '../components/NavigationBar.js';
 import Colors from '../components/Colors.js';
 
 // Link to the firebase authentication client
@@ -128,7 +127,6 @@ class LoginScreen extends Component {
       // Creates the 3 current buttons which are being used on the home screen.
       let googleSignIn  = social("Sign in with Google", 'google', this.signInWithGoogleAsync, undefined, styles);
       let facebookSignIn = social("Sign in with Facebook (Not Avail)", 'facebook', this.signInWithGoogleAsync, undefined, styles)
-      let navigationBar = Navigation.getNavigationBar(this.props.navigation.navigate);
       return (
         // Creates the view with all the buttons that are needed
         <View style = {styles.container}>
@@ -138,7 +136,6 @@ class LoginScreen extends Component {
             {googleSignIn}
             {facebookSignIn}
           </View>
-          {navigationBar}
         <View style={styles.bottomFiller}>
         </View>
     </View>

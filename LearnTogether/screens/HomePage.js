@@ -60,8 +60,7 @@ class HomeScreen extends Component {
 
     render() {
         let getText = TextTypes.getDefaultText;
-
-        let navigationBar = Navigation.getNavigationBar(this.props.navigation.navigate);
+        
         let chatText = getText("Chats");
         let chatLists = Lists.getListItem(this.getChatLists());
         let skillText = getText("Current Skills");
@@ -81,7 +80,6 @@ class HomeScreen extends Component {
                   {skillText}
                   {skillLists}
                 </View>
-                {navigationBar}
                 <View style={styles.bottomFiller}>
                 </View>
             </View>
