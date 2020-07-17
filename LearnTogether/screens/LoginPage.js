@@ -114,7 +114,7 @@ class LoginScreen extends Component {
         }),
       }).then((response) => response.text()).then((responseJson) => {
         console.log(responseJson);
-        USER_EMAIL = googleUser.email;
+        global.USER_EMAIL = googleUser.email;
       })
     }
     // Creates the loading screen which only has one button which allows the user to login

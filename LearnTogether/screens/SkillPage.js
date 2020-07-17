@@ -1,19 +1,41 @@
 import React, {Component} from 'react'; 
-import {View, StyleSheet, Image, TextInput} from 'react-native';
+import {View, StyleSheet, Text, ScrollView} from 'react-native';
 import TextTypes from '../components/Text.js';
-import Navigation from '../components/NavigationBar.js';
+import { SearchBar } from 'react-native-elements';
 import Colors from '../components/Colors.js';
 
 /** FIX THIS COMMENT EVENTUALLY */
 class SkillScreen extends Component {
+    state = {
+        search: '',
+      };
+    
+      updateSearch = (search) => {
+        this.setState({ search });
+      };
+
     render() {
-        let descriptionText = TextTypes.getDefaultText("Skill Screen");
+        let descriptionText = TextTypes.getDefaultText("Search for New Skills");
+        const { search } = this.state;
         return (
             <View style={styles.container}>
                 <View style={styles.topFiller}>
                 </View>
+                <View style={styles.screenTop}>
+                    {descriptionText}
+                </View>
+                <SearchBar style = {styles.searchBar}
+                    placeholder="Type Here"
+                    onChangeText={this.updateSearch}
+                    value={search}
+                    lightTheme={true}
+                    round={true}
+                    containerStyle = {styles.searchBar}
+                />
                 <View style = {styles.contents}>
-                  {descriptionText}
+                    <Text>
+                        {search}
+                    </Text>
                 </View>
                 <View style={styles.bottomFiller}>
                 </View>
@@ -39,7 +61,7 @@ const styles = StyleSheet.create({
     
     contents: {
         flex: 23,
-        alignItems: 'center',
+        alignItems: 'center'
     },
 
     bottomFiller: {
@@ -52,7 +74,11 @@ const styles = StyleSheet.create({
     },
 
     searchBar: {
-        flex: 1,
-        backgroundColor: 'blue',
+        backgroundColor: 'white',
+    },
+
+    screenTop: {
+        flex: 1.5,
+        alignItems: 'center',
     },
   });

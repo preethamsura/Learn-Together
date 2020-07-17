@@ -1,14 +1,16 @@
 import React, {Component, useCallback, useState, useEffect} from 'react'; 
-import {View, StyleSheet, Text} from 'react-native';
+import {View, StyleSheet} from 'react-native';
 import Colors from '../components/Colors.js';
 import { GiftedChat } from 'react-native-gifted-chat';
 
 /** FIX THIS COMMENT EVENTUALLY */
 function ChatScreen({route, navigation}) {
 
+  // Title of the current screen should be other person.
   const { title } = route.params;
   navigation.setOptions({ title: title });
 
+  // COMMENT
   state = {
     messages: [
         {

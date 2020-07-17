@@ -5,28 +5,22 @@ import Navigation from '../components/NavigationBar.js';
 import Colors from '../components/Colors.js';
 
 /** FIX THIS COMMENT EVENTUALLY */
-class ConstructSkill extends Component {
-    render() {
+function SkillConstructor({route, navigation}) {
+    // Title of the current screen should be other person.
+    const { title } = route.params;
+    navigation.setOptions({ title: title });
 
-        let navigationBar = Navigation.getNavigationBar(this.props.navigation.navigate);
-        let descriptionText = TextTypes.getDefaultText("Default Skill Page");
-
-        return (
-            <View style={styles.container}>
-                <View style={styles.topFiller}>
-                </View>
-                <View style = {styles.contents}>
-                  {descriptionText}
-                </View>
-                {navigationBar}
-                <View style={styles.bottomFiller}>
-                </View>
+    return (
+        <View style={styles.container}>
+            <View style = {styles.contents}>
             </View>
-        )
-    }
+            <View style={styles.bottomFiller}>
+            </View>
+        </View>
+    )
 }
 
-export default ConstructSkill;
+export default SkillConstructor;
 
 const styles = StyleSheet.create({
     container: {

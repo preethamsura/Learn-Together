@@ -1,7 +1,6 @@
 import React, {Component} from 'react'; 
 import {View, StyleSheet} from 'react-native';
 import TextTypes from '../components/Text.js';
-import Navigation from '../components/NavigationBar.js';
 import Colors from '../components/Colors.js';
 import Lists from '../components/Lists';
 
@@ -50,7 +49,7 @@ class HomeScreen extends Component {
                     subtitle: 'UC Berkeley'
                 },
                 {
-                    name: 'Crappy Python Class',
+                    name: 'Crappy Python',
                     avatar_url: 'https://reactnative.dev/img/tiny_logo.png',
                     subtitle: 'Stanford'
                 },
@@ -61,10 +60,11 @@ class HomeScreen extends Component {
     render() {
         let getText = TextTypes.getDefaultText;
         
+        // Creates all the lists on the home page for the user's current chats and current skills. 
         let chatText = getText("Chats");
-        let chatLists = Lists.getListItem(this.getChatLists(), undefined, this.props.navigation);
+        let chatLists = Lists.getNavigateListItem(this.getChatLists(), undefined, this.props.navigation, "Chat");
         let skillText = getText("Current Skills");
-        let skillLists = Lists.getListItem(this.getSkillLists(), undefined, this.props.navigation);
+        let skillLists = Lists.getNavigateListItem(this.getSkillLists(), undefined, this.props.navigation, "SkillConstructor");
 
         return (
             <View style={styles.container}>

@@ -2,11 +2,11 @@ import React, {Component} from 'react';
 import {View, StyleSheet,} from 'react-native';
 import { ListItem } from 'react-native-elements';
 
-/** FIXME */
+/** FIXME AND FIX HOW EXPORTS ARE DONE FOR THIS CLASS */
 class ListsClass extends Component {
     
     /** FIXME */
-    getListItem = (list, style = undefined, method = undefined) => {
+    getNavigateListItem = (list, style = undefined, method = undefined, parameter = undefined) => {
         let styles;
         if (style != undefined) {
             styles = style
@@ -23,13 +23,18 @@ class ListsClass extends Component {
                     title={l.name}
                     subtitle={l.subtitle}
                     bottomDivider
-                    onPress={() => method.navigate("Chat", {title: l.name,})}
+                    onPress={() => method.navigate(parameter, {title: l.name,})}
                 />
                 ))
                 }
             </View>
         )
     }
+
+    getSkillBoxList = () => {
+        
+    }
+
 }
 
 const Lists = new ListsClass();

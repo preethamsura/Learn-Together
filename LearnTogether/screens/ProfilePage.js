@@ -62,9 +62,7 @@ class ProfileScreen extends Component {
 
         //this.setup(USER_EMAIL);
         const url = 'https://reactnative.dev/img/tiny_logo.png';
-
-        console.log(global.USER_EMAIL)
-
+        
         return (
             <View style={styles.container}>
                 <View style = {styles.topFiller}>
