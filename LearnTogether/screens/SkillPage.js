@@ -3,6 +3,7 @@ import {View, StyleSheet, Text, ScrollView} from 'react-native';
 import TextTypes from '../components/Text.js';
 import { SearchBar } from 'react-native-elements';
 import Colors from '../components/Colors.js';
+import Lists from '../components/Lists.js'
 
 /** FIX THIS COMMENT EVENTUALLY */
 class SkillScreen extends Component {
@@ -10,9 +11,35 @@ class SkillScreen extends Component {
         search: '',
       };
     
+      /**
+       * Updates the search based on what text has been typed in the search bar.
+       * @param {*} search : Text that's been typed in the search bar.
+       */
       updateSearch = (search) => {
         this.setState({ search });
       };
+
+      /**
+       * Default categories in the skill screen.
+       */
+      getDefaultCategories = () => {
+          return (
+              [
+                {
+                    rightElement: "Sports",
+                    leftElement: "Math",
+                },
+                {
+                    rightElement: "Coding",
+                    leftElement: "Art",
+                },
+                {
+                    rightElement: "Gaming",
+                    leftElement: "Other",
+                },
+            ]
+          )
+      }
 
     render() {
         let descriptionText = TextTypes.getDefaultText("Search for New Skills");
@@ -33,9 +60,7 @@ class SkillScreen extends Component {
                     containerStyle = {styles.searchBar}
                 />
                 <View style = {styles.contents}>
-                    <Text>
-                        {search}
-                    </Text>
+                        {Lists.getSkillBoxList(this.getDefaultCategories(), this.props.navigation.navigate, "SkillCategories")}
                 </View>
                 <View style={styles.bottomFiller}>
                 </View>
@@ -61,7 +86,7 @@ const styles = StyleSheet.create({
     
     contents: {
         flex: 23,
-        alignItems: 'center'
+        alignItems: 'stretch',
     },
 
     bottomFiller: {

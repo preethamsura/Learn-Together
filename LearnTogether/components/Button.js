@@ -28,6 +28,32 @@ class Buttons extends Component {
           )
     }
 
+    /** Creates and returns a default touchable button which calls on a certain method. 
+     * @param text = text which the button should display. Will be empty string if no method is passed in.
+     * @param navigate = Method which the button should run on click
+     * @param parameter = Which screen to navigate to
+     * @param options = Dictionary containing the options for the screen when navigated to. 
+     * @param style = Style of the button.
+     * @return = Button with all the necessary params set. 
+    */
+    getNavigateButton = (text = "", navigate, screenName, options, style = undefined) => {
+      let styles;
+      if (style != undefined) {
+        styles = style
+      } else {
+        styles = defaultStyles
+      }
+        return (
+          <TouchableOpacity style = {styles.Touch} onPress={() => navigate(screenName, options)}>
+          <View style={styles.ButtonView}> 
+              <Text style={styles.ButtonText}>
+                  {text}
+                  </Text>
+              </View>
+          </TouchableOpacity>
+          )
+    }
+
     /** Creates and returns a social icon button which can be used to represent different social medias networks.
      * @param text = text which the button should display. Will be empty string if no method is passed in.
      * @param buttonType = type of social media network that this button should represent
@@ -60,8 +86,8 @@ const defaultStyles = StyleSheet.create({
     Touch: {
       borderRadius: 20,
       padding: 12,
-      width: 300,
       alignItems: 'center',
+      width: 150,
       backgroundColor: 'lightgrey'
     },
 

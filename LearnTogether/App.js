@@ -10,7 +10,7 @@ import SkillScreen from './screens/SkillPage.js'
 import Settings from './screens/Settings.js';
 import ChatScreen from './screens/ChatConstructor.js';
 import SkillConstructor from './screens/SkillConstructor.js';
-
+import SkillCategories from './screens/SkillCategories.js'
 
 import firebase from 'firebase';
 import {firebaseConfig} from './config.js'
@@ -67,8 +67,8 @@ function App() {
           options={({ route }) => ({ title: route.params.name })}
         />
         <Stack.Screen 
-          name="SkillConstructor" 
-          component = {SkillConstructor}
+          name="SkillCategories" 
+          component = {SkillCategories}
           options={({ route }) => ({ title: route.params.name })}
         />
       </Stack.Navigator>

@@ -1,53 +1,24 @@
 import * as React from 'react';
 import {View, StyleSheet} from 'react-native';
 import Colors from '../components/Colors.js';
-import { GiftedChat } from 'react-native-gifted-chat';
 
 /** FIX THIS COMMENT EVENTUALLY */
-function ChatScreen({route, navigation}) {
+function SkillCategories({route, navigation}) {
 
   // Title of the current screen should be other person.
   const { title } = route.params;
   navigation.setOptions({ title: title });
 
-  // COMMENT
-  let state = {
-    messages: [
-        {
-          _id: 1,
-          text: 'This is a test message',
-          createdAt: new Date(),
-          user: {
-            _id: 1,
-            name: 'React Native',
-            avatar: 'https://placeimg.com/140/140/any',
-          },
-        },
-    ]
-  };
-
-  // COMMENT
-  let onSend = (newMessages = []) => {
-    state.messages.unshift(newMessages[0]);
-    GiftedChat.append(newMessages, state.messages)
-  };
-
   return (
       <View style={styles.container}>
           <View style = {styles.contents}>
-              <GiftedChat
-                  messages={state.messages}
-                  onSend = {messages => onSend(messages)}
-                  user={{
-                      _id: 1,
-                  }}
-              />
+
           </View>
       </View>
   )
 }
 
-export default ChatScreen;
+export default SkillCategories;
 
 const styles = StyleSheet.create({
     container: {
