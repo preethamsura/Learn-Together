@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
     
     contents: {
         flex: 23,
-        alignItems: 'stretch'
+        alignItems: 'stretch',
     },
 
     bottomFiller: {

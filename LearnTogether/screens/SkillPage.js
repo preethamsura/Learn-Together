@@ -1,24 +1,12 @@
 import React, {Component} from 'react'; 
 import {View, StyleSheet, Text, ScrollView} from 'react-native';
 import TextTypes from '../components/Text.js';
-import { SearchBar } from 'react-native-elements';
 import Colors from '../components/Colors.js';
 import Lists from '../components/Lists.js'
+import Button from '../components/Button.js'
 
 /** FIX THIS COMMENT EVENTUALLY */
 class SkillScreen extends Component {
-    state = {
-        search: '',
-      };
-    
-      /**
-       * Updates the search based on what text has been typed in the search bar.
-       * @param {*} search : Text that's been typed in the search bar.
-       */
-      updateSearch = (search) => {
-        this.setState({ search });
-      };
-
       /**
        * Default categories in the skill screen.
        */
@@ -43,24 +31,19 @@ class SkillScreen extends Component {
 
     render() {
         let descriptionText = TextTypes.getDefaultText("Search for New Skills");
-        const { search } = this.state;
+        let navigate = this.props.navigation.navigate
+        let searchNav = Button.getTouchButton("Search", navigate, "Search", settingsStyles);
+
         return (
             <View style={styles.container}>
                 <View style={styles.topFiller}>
                 </View>
                 <View style={styles.screenTop}>
                     {descriptionText}
+                    {searchNav}
                 </View>
-                <SearchBar style = {styles.searchBar}
-                    placeholder="Type Here"
-                    onChangeText={this.updateSearch}
-                    value={search}
-                    lightTheme={true}
-                    round={true}
-                    containerStyle = {styles.searchBar}
-                />
                 <View style = {styles.contents}>
-                        {Lists.getSkillBoxList(this.getDefaultCategories(), this.props.navigation.navigate, "SkillCategories")}
+                        {Lists.getSkillBoxList(this.getDefaultCategories(), navigate, "SkillCategories")}
                 </View>
                 <View style={styles.bottomFiller}>
                 </View>
@@ -104,6 +87,34 @@ const styles = StyleSheet.create({
 
     screenTop: {
         flex: 1.5,
-        alignItems: 'center',
+        justifyContent: 'space-evenly',
+        flexDirection: 'row',
     },
   });
+
+  const settingsStyles = StyleSheet.create({
+    Touch: {
+        backgroundColor: 'lightgrey',
+        borderWidth: 2,
+        borderColor: "white",
+        borderRadius: 15,
+        
+        width: 70,
+        
+        alignItems: 'center',
+        justifyContent: 'center',
+        alignSelf: 'flex-end'
+      },
+
+      ButtonView: {
+        flexDirection: 'row',
+        justifyContent: "space-between",
+        alignItems: "center",
+      },
+
+      ButtonText: {
+        fontSize: 20,
+        alignItems: 'center',
+        justifyContent: 'center', 
+      }, 
+});

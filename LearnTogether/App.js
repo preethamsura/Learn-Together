@@ -9,8 +9,8 @@ import ProfileScreen from './screens/ProfilePage.js';
 import SkillScreen from './screens/SkillPage.js'
 import Settings from './screens/Settings.js';
 import ChatScreen from './screens/ChatConstructor.js';
-import SkillConstructor from './screens/SkillConstructor.js';
 import SkillCategories from './screens/SkillCategories.js'
+import SearchScreen from './screens/SearchScreen.js'
 
 import firebase from 'firebase';
 import {firebaseConfig} from './config.js'
@@ -70,6 +70,10 @@ function App() {
           name="SkillCategories" 
           component = {SkillCategories}
           options={({ route }) => ({ title: route.params.name })}
+        />
+        <Stack.Screen 
+          name="Search" 
+          component = {SearchScreen}
         />
       </Stack.Navigator>
     </NavigationContainer>

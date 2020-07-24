@@ -10,33 +10,38 @@ function ChatScreen({route, navigation}) {
   const { title } = route.params;
   navigation.setOptions({ title: title });
 
-  // COMMENT
-  let state = {
-    messages: [
-        {
-          _id: 1,
-          text: 'This is a test message',
-          createdAt: new Date(),
-          user: {
-            _id: 1,
-            name: 'React Native',
-            avatar: 'https://placeimg.com/140/140/any',
-          },
-        },
-    ]
-  };
+  // NEEDS TO BE UPDATED SO THAT ITS ONLY CURRENT MESSAGES. 
+  let getMessages = [
+    {
+      _id: 1,
+      text: 'This is a test message',
+      createdAt: new Date(),
+      user: {
+        _id: 1,
+        name: 'React Native',
+        avatar: 'https://placeimg.com/140/140/any',
+      },
+    },
+  ]
 
-  // COMMENT
+  // Creates a messages state variable and the setMessages function which can 
+  // be used to update the messages variable. 
+  const [messages, setMessages] = React.useState(getMessages)
+  
+  /**
+   * Updates the chat messages upon sending a message. Will also send the message to
+   * the server to be updated. 
+   * @param {*} newMessages = New message which has just been sent in the chat. 
+   */
   let onSend = (newMessages = []) => {
-    state.messages.unshift(newMessages[0]);
-    GiftedChat.append(newMessages, state.messages)
+    setMessages((prevMessages) => GiftedChat.append(prevMessages, newMessages))
   };
-
+  
   return (
       <View style={styles.container}>
           <View style = {styles.contents}>
               <GiftedChat
-                  messages={state.messages}
+                  messages={messages}
                   onSend = {messages => onSend(messages)}
                   user={{
                       _id: 1,

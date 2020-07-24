@@ -75,7 +75,5 @@ const defaultStyles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: "space-around",
         alignContent: "stretch",
-        justifyContent: 'space-evenly',
-        alignSelf: 'stretch'
     },
 });
